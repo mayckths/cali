@@ -4,174 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cali, fin de año</title>
-  <meta name="description" content="Comparación de alojamientos en Airbnb para el viaje a Cali del 28 de diciembre al 3 de enero.">
+  <meta name="description" content="Comparación de alojamientos en Airbnb para el viaje a Cali del 28 de diciembre al 3 de enero, 9 personas.">
   <style>
     :root {
-      --bg: #f7f7f5;
-      --card: #ffffff;
-      --fg: #1c1c1c;
-      --muted: #6b6b6b;
-      --line: #e5e5e2;
-      --accent: #2563eb;
-      --good: #15803d;
-      --good-bg: #ecfdf3;
-      --warn: #b45309;
-      --warn-bg: #fff7ed;
-      --tag-bg: #f1f1ef;
+      --bg: #f7f7f5; --card: #ffffff; --fg: #1c1c1c; --muted: #6b6b6b; --line: #e5e5e2;
+      --accent: #2563eb; --accent-fg: #ffffff;
+      --good: #15803d; --good-bg: #ecfdf3; --warn: #b45309; --warn-bg: #fff7ed; --tag-bg: #f1f1ef;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #121212;
-        --card: #1c1c1c;
-        --fg: #f0f0f0;
-        --muted: #9a9a9a;
-        --line: #2c2c2c;
-        --accent: #60a5fa;
-        --good: #4ade80;
-        --good-bg: #14291b;
-        --warn: #fbbf24;
-        --warn-bg: #2b2210;
-        --tag-bg: #262626;
+        --bg: #121212; --card: #1c1c1c; --fg: #f0f0f0; --muted: #9a9a9a; --line: #2c2c2c;
+        --accent: #60a5fa; --accent-fg: #0b1220;
+        --good: #4ade80; --good-bg: #14291b; --warn: #fbbf24; --warn-bg: #2b2210; --tag-bg: #262626;
       }
     }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.5;
-    }
-    .wrap {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 32px 16px 64px;
-    }
-    header h1 {
-      font-size: clamp(1.8rem, 6vw, 2.6rem);
-      margin: 0 0 4px;
-      letter-spacing: -0.02em;
-    }
-    header p {
-      margin: 0;
-      color: var(--muted);
-    }
-    .summary {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin: 12px 0 8px;
-    }
-    .summary div {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 12px;
-    }
-    .summary span {
-      display: block;
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    .summary strong {
-      display: block;
-      font-size: 1.05rem;
-      margin-top: 2px;
-    }
-    .note {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin: 0 0 24px;
-    }
-    ol.cards {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 16px;
-    }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 18px;
-    }
-    .top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
-    }
-    .rank {
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-weight: 600;
-    }
-    h2 {
-      font-size: 1.15rem;
-      margin: 2px 0 2px;
-      line-height: 1.3;
-    }
+    body { margin: 0; background: var(--bg); color: var(--fg);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.5; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; }
+    header h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); margin: 0 0 4px; letter-spacing: -0.02em; }
+    header p { margin: 0; color: var(--muted); }
+    .note { font-size: 0.85rem; color: var(--muted); margin: 12px 0 0; }
+    section.leg { margin-top: 36px; }
+    .leg-title { font-size: 1.4rem; margin: 0 0 2px; letter-spacing: -0.01em; }
+    .leg-sub { color: var(--muted); margin: 0 0 8px; }
+    .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0 16px; }
+    .summary div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+    .summary span { display: block; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .summary strong { display: block; font-size: 1.05rem; margin-top: 2px; }
+    ol.cards { list-style: none; padding: 0; margin: 0; display: grid; gap: 20px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+    .photo { display: block; aspect-ratio: 900 / 429; background: var(--tag-bg); }
+    .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .body { padding: 16px 18px 18px; }
+    .top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+    .rank { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+    h3 { font-size: 1.15rem; margin: 2px 0 2px; line-height: 1.3; }
     .place { color: var(--muted); font-size: 0.95rem; margin: 0; }
     .price { text-align: right; white-space: nowrap; }
     .price .total { font-weight: 700; font-size: 1.1rem; display: block; }
-    .price .was {
-      color: var(--muted);
-      text-decoration: line-through;
-      font-size: 0.85rem;
-      display: block;
-    }
+    .price .was { color: var(--muted); text-decoration: line-through; font-size: 0.85rem; display: block; }
     .price .night { color: var(--muted); font-size: 0.8rem; display: block; }
-    .facts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 14px;
-      margin: 12px 0 10px;
-      padding: 0;
-      list-style: none;
-      font-size: 0.95rem;
-    }
+    .price .pp { color: var(--accent); font-size: 0.85rem; font-weight: 600; display: block; margin-top: 2px; }
+    .facts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 12px 0 10px; padding: 0; list-style: none; font-size: 0.95rem; }
     .facts li::before { content: "· "; color: var(--muted); }
     .facts li:first-child::before { content: ""; }
     .rating { font-weight: 600; }
     .rating .n { color: var(--muted); font-weight: 400; }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
-    .tag {
-      background: var(--tag-bg);
-      border-radius: 999px;
-      padding: 3px 10px;
-      font-size: 0.8rem;
-    }
-    .pro, .con {
-      margin: 0;
-      font-size: 0.9rem;
-      padding: 8px 12px;
-      border-radius: 10px;
-    }
+    .tag { background: var(--tag-bg); border-radius: 999px; padding: 3px 10px; font-size: 0.8rem; }
+    .tag.fav { background: var(--good-bg); color: var(--good); font-weight: 600; }
+    .pro, .con { margin: 0; font-size: 0.9rem; padding: 8px 12px; border-radius: 10px; }
     .pro { background: var(--good-bg); color: var(--good); }
     .con { background: var(--warn-bg); color: var(--warn); margin-top: 6px; }
     .host { color: var(--muted); font-size: 0.85rem; margin: 12px 0 0; }
-    section.leg { margin-top: 36px; }
-    section.leg:first-of-type { margin-top: 24px; }
-    .leg h2.leg-title {
-      font-size: 1.4rem;
-      margin: 0 0 2px;
-      letter-spacing: -0.01em;
-    }
-    .leg .leg-sub { color: var(--muted); margin: 0 0 8px; }
-    .fav {
-      background: var(--good-bg);
-      color: var(--good);
-      font-weight: 600;
-    }
-    footer {
-      margin-top: 32px;
-      color: var(--muted);
-      font-size: 0.85rem;
-      text-align: center;
-    }
+    .btn { display: block; text-align: center; margin-top: 14px; padding: 12px 16px; border-radius: 12px;
+      background: var(--accent); color: var(--accent-fg); font-weight: 600; text-decoration: none; }
+    .btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+    .pend { margin: 6px 0 0; font-size: 0.8rem; color: var(--muted); text-align: center; }
+    footer { margin-top: 32px; color: var(--muted); font-size: 0.85rem; text-align: center; }
     footer a { color: var(--accent); text-decoration: none; }
     @media (max-width: 480px) {
       .summary { grid-template-columns: 1fr 1fr; }
@@ -184,259 +75,286 @@
   <div class="wrap">
     <header>
       <h1>Cali, 28 de diciembre al 3 de enero</h1>
-      <p>Opciones en Airbnb para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy.</p>
+      <p>Somos 9. Opciones en Airbnb para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy.</p>
+      <p class="note">Precios en COP tal como aparecían en Airbnb el 18 de septiembre de 2026. Pueden cambiar. El precio por persona divide el total entre 9. Los botones abren Airbnb con las fechas y las 9 personas ya puestas.</p>
     </header>
-
-    <p class="note">Precios en COP tal como aparecían en Airbnb el 18 de septiembre de 2026. Pueden cambiar.</p>
 
     <section class="leg" aria-labelledby="ciudad">
       <h2 class="leg-title" id="ciudad">En la ciudad</h2>
       <p class="leg-sub">28 de diciembre al 1 de enero · 4 noches</p>
-      <div class="summary" aria-label="Resumen ciudad">
-        <div><span>Más barata</span><strong>Casa en Granada</strong></div>
-        <div><span>Más reseñas</span><strong>Luxury 502</strong></div>
-        <div><span>Más capacidad</span><strong>Casa Alba</strong></div>
-      </div>
-
+      <div class="summary"><div><span>Más barata</span><strong>Casa en Granada</strong></div><div><span>Más reseñas</span><strong>Luxury 502</strong></div><div><span>Más camas y baños</span><strong>Casa Alba</strong></div></div>
       <ol class="cards">
-
-      <li class="card">
-        <div class="top">
-          <div>
-            <div class="rank">#1 · Precio más bajo · Descuento vigente</div>
-            <h2>Casa en Granada cerca a dining &amp; nightlife</h2>
-            <p class="place">Casa en el barrio Granada, Cali</p>
+      <li class="card" id="casa-granada">
+        <a class="photo" href="https://www.airbnb.com/s/Cali--Colombia/homes?query=Casa%20en%20Granada%20cerca%20a%20dining%20nightlife" target="_blank" rel="noopener">
+          <img src="img/casa-granada.jpg" alt="Foto de Casa en Granada cerca a dining &amp; nightlife" loading="lazy" width="900" height="429">
+        </a>
+        <div class="body">
+          <div class="top">
+            <div>
+              <div class="rank">#1 · Precio más bajo · Descuento vigente</div>
+              <h3>Casa en Granada cerca a dining &amp; nightlife</h3>
+              <p class="place">Casa en el barrio Granada, Cali</p>
+            </div>
+            <div class="price">
+              <span class="was">$4.177.299</span>
+              <span class="total">$3.769.071</span>
+              <span class="night">$942.268 por noche</span>
+              <span class="pp">$418.786 por persona</span>
+            </div>
           </div>
-          <div class="price">
-            <span class="was">$4.177.299</span>
-            <span class="total">$3.769.071</span>
-            <span class="night">$942.268 por noche</span>
-          </div>
+          <ul class="facts">
+            <li>10 huéspedes</li><li>3 habitaciones</li><li>5 camas</li><li>2,5 baños</li>
+            <li class="rating">★ 4,89 <span class="n">(18 reseñas)</span></li>
+          </ul>
+          <div class="tags"><span class="tag fav">Favorito entre huéspedes</span><span class="tag ">Superanfitriona</span><span class="tag ">Cancelación gratuita</span></div>
+          <p class="pro">La más barata de la ciudad, en Granada, la zona de restaurantes y rumba. Superanfitriona con 8 años.</p>
+          <p class="con">Solo 5 camas para 9 personas: al menos 4 tendrían que compartir cama. 2,5 baños para todos.</p>
+          <p class="host">Anfitriona: Samilis · Superanfitriona · 8 años en Airbnb</p>
+          <a class="btn ghost" href="https://www.airbnb.com/s/Cali--Colombia/homes?query=Casa%20en%20Granada%20cerca%20a%20dining%20nightlife" target="_blank" rel="noopener">Buscar en Airbnb</a><p class="pend">Enlace exacto pendiente. Búsqueda por nombre mientras tanto.</p>
         </div>
-        <ul class="facts">
-          <li>10 huéspedes</li><li>3 habitaciones</li><li>5 camas</li><li>2,5 baños</li>
-          <li class="rating">★ 4,89 <span class="n">(18 reseñas)</span></li>
-        </ul>
-        <div class="tags">
-          <span class="tag fav">Favorito entre huéspedes</span><span class="tag">Superanfitriona</span><span class="tag">Cancelación gratuita</span>
-        </div>
-        <p class="pro">La más barata de la ciudad, en Granada, la zona de restaurantes y rumba. Superanfitriona con 8 años.</p>
-        <p class="con">Solo 5 camas y 2,5 baños para 10 personas. Varios tendrían que compartir cama.</p>
-        <p class="host">Anfitriona: Samilis · Superanfitriona · 8 años en Airbnb</p>
       </li>
-
-      <li class="card">
-        <div class="top">
-          <div>
-            <div class="rank">#2 · Más habitaciones y baños</div>
-            <h2>Casa Alba - San Antonio</h2>
-            <p class="place">Casa en San Antonio, Cali</p>
+      <li class="card" id="casa-alba">
+        <a class="photo" href="https://www.airbnb.com/rooms/1063628642244199346" target="_blank" rel="noopener">
+          <img src="img/casa-alba.jpg" alt="Foto de Casa Alba - San Antonio" loading="lazy" width="900" height="429">
+        </a>
+        <div class="body">
+          <div class="top">
+            <div>
+              <div class="rank">#2 · Más habitaciones y baños</div>
+              <h3>Casa Alba - San Antonio</h3>
+              <p class="place">Casa en San Antonio, Cali</p>
+            </div>
+            <div class="price">
+              
+              <span class="total">$4.197.491</span>
+              <span class="night">$1.049.373 por noche</span>
+              <span class="pp">$466.388 por persona</span>
+            </div>
           </div>
-          <div class="price">
-            <span class="total">$4.197.491</span>
-            <span class="night">$1.049.373 por noche</span>
-          </div>
+          <ul class="facts">
+            <li>12 huéspedes</li><li>5 habitaciones</li><li>6 camas</li><li>5 baños</li>
+            <li class="rating">★ 4,8 <span class="n">(5 reseñas)</span></li>
+          </ul>
+          <div class="tags"><span class="tag ">Aire acondicionado</span><span class="tag ">Barrio histórico</span><span class="tag ">Cancelación gratuita</span></div>
+          <p class="pro">5 habitaciones y 5 baños, la mejor distribución para 9. San Antonio es el barrio más pintoresco y se camina a todo.</p>
+          <p class="con">Solo 5 reseñas. 6 camas para 9, así que 3 comparten.</p>
+          <p class="host">Anfitriona: Alba · 3 años en Airbnb</p>
+          <a class="btn" href="https://www.airbnb.com/rooms/1063628642244199346?check_in=2026-12-28&check_out=2027-01-01&adults=9" target="_blank" rel="noopener">Ver en Airbnb</a>
         </div>
-        <ul class="facts">
-          <li>12 huéspedes</li><li>5 habitaciones</li><li>6 camas</li><li>5 baños</li>
-          <li class="rating">★ 4,8 <span class="n">(5 reseñas)</span></li>
-        </ul>
-        <div class="tags">
-          <span class="tag">Aire acondicionado</span><span class="tag">Barrio histórico</span><span class="tag">Cancelación gratuita</span>
-        </div>
-        <p class="pro">5 habitaciones y 5 baños, la mejor distribución para un grupo. San Antonio es el barrio más pintoresco y se camina a todo.</p>
-        <p class="con">Solo 5 reseñas. 6 camas para 12 personas, así que también habría que compartir.</p>
-        <p class="host">Anfitriona: Alba · 3 años en Airbnb</p>
       </li>
-
-      <li class="card">
-        <div class="top">
-          <div>
-            <div class="rank">#3 · Más reseñas · Descuento vigente</div>
-            <h2>Luxury apartamento en Cali 502</h2>
-            <p class="place">Apartamento en Cali</p>
+      <li class="card" id="luxury-502">
+        <a class="photo" href="https://www.airbnb.com/rooms/1134995105818917390" target="_blank" rel="noopener">
+          <img src="img/luxury-502.jpg" alt="Foto de Luxury apartamento en Cali 502" loading="lazy" width="900" height="429">
+        </a>
+        <div class="body">
+          <div class="top">
+            <div>
+              <div class="rank">#3 · Más reseñas · Descuento vigente</div>
+              <h3>Luxury apartamento en Cali 502</h3>
+              <p class="place">Apartamento dúplex en Cali</p>
+            </div>
+            <div class="price">
+              <span class="was">$6.774.509</span>
+              <span class="total">$6.111.968</span>
+              <span class="night">$1.527.992 por noche</span>
+              <span class="pp">$679.108 por persona</span>
+            </div>
           </div>
-          <div class="price">
-            <span class="was">$6.774.509</span>
-            <span class="total">$6.111.968</span>
-            <span class="night">$1.527.992 por noche</span>
-          </div>
+          <ul class="facts">
+            <li>9 huéspedes</li><li>4 habitaciones</li><li>5 camas</li><li>2,5 baños</li>
+            <li class="rating">★ 4,95 <span class="n">(110 reseñas)</span></li>
+          </ul>
+          <div class="tags"><span class="tag fav">Favorito entre huéspedes</span><span class="tag ">Piscina compartida</span><span class="tag ">Dos pisos</span></div>
+          <p class="pro">El más probado: 110 reseñas con 4,95. Acabados modernos y anfitrión profesional.</p>
+          <p class="con">Casi el doble que Granada. Cabe exactamente 9, con 5 camas, y no muestra cancelación gratuita.</p>
+          <p class="host">Anfitrión: Zenya Host · 2 años en Airbnb</p>
+          <a class="btn" href="https://www.airbnb.com/rooms/1134995105818917390?check_in=2026-12-28&check_out=2027-01-01&adults=9" target="_blank" rel="noopener">Ver en Airbnb</a>
         </div>
-        <ul class="facts">
-          <li>9 huéspedes</li><li>4 habitaciones</li><li>5 camas</li><li>2,5 baños</li>
-          <li class="rating">★ 4,95 <span class="n">(110 reseñas)</span></li>
-        </ul>
-        <div class="tags">
-          <span class="tag fav">Favorito entre huéspedes</span><span class="tag">Dos pisos</span>
-        </div>
-        <p class="pro">El más probado: 110 reseñas con 4,95. Acabados modernos y anfitrión profesional.</p>
-        <p class="con">Casi el doble que Granada, cabe menos gente (9) y no muestra cancelación gratuita.</p>
-        <p class="host">Anfitrión: Zenya Host · 2 años en Airbnb</p>
       </li>
-
       </ol>
     </section>
 
     <section class="leg" aria-labelledby="finca">
       <h2 class="leg-title" id="finca">Finca</h2>
       <p class="leg-sub">1 al 3 de enero · 2 noches</p>
-      <div class="summary" aria-label="Resumen finca">
-        <div><span>Más barata</span><strong>Villa Campestre</strong></div>
-        <div><span>Mejor calificada</span><strong>Finca de recreo Dapa</strong></div>
-        <div><span>Más capacidad</span><strong>Green Jay Dapa</strong></div>
-      </div>
-
+      <div class="summary"><div><span>Más barata</span><strong>Villa Campestre</strong></div><div><span>Mejor calificada</span><strong>Finca de recreo Dapa</strong></div><div><span>Más camas</span><strong>Green Jay Dapa</strong></div></div>
       <ol class="cards">
-
-      <li class="card">
-        <div class="top">
-          <div>
-            <div class="rank">#1 · Precio más bajo</div>
-            <h2>Espectacular Villa Campestre</h2>
-            <p class="place">Villa en Jamundí</p>
+      <li class="card" id="villa-campestre">
+        <a class="photo" href="https://www.airbnb.com/rooms/33601199" target="_blank" rel="noopener">
+          <img src="img/villa-campestre.jpg" alt="Foto de Espectacular Villa Campestre" loading="lazy" width="900" height="429">
+        </a>
+        <div class="body">
+          <div class="top">
+            <div>
+              <div class="rank">#1 · Precio más bajo</div>
+              <h3>Espectacular Villa Campestre</h3>
+              <p class="place">Villa en Jamundí</p>
+            </div>
+            <div class="price">
+              
+              <span class="total">$1.982.098</span>
+              <span class="night">$991.049 por noche</span>
+              <span class="pp">$220.233 por persona</span>
+            </div>
           </div>
-          <div class="price">
-            <span class="total">$1.982.098</span>
-            <span class="night">$991.049 por noche</span>
-          </div>
+          <ul class="facts">
+            <li>13 huéspedes</li><li>4 habitaciones</li><li>7 camas</li><li>4,5 baños</li>
+            <li class="rating">★ 4,58 <span class="n">(12 reseñas)</span></li>
+          </ul>
+          <div class="tags"><span class="tag ">Piscina</span><span class="tag ">Jacuzzi</span><span class="tag ">Llegada autónoma</span><span class="tag ">Cancelación gratuita</span></div>
+          <p class="pro">La más barata y la que más reseñas tiene entre las fincas. Piscina grande y jacuzzi.</p>
+          <p class="con">7 camas para 9: dos comparten. La calificación es la más baja del grupo.</p>
+          <p class="host">Anfitriona: Yamile · 8 años en Airbnb</p>
+          <a class="btn" href="https://www.airbnb.com/rooms/33601199?check_in=2027-01-01&check_out=2027-01-03&adults=9" target="_blank" rel="noopener">Ver en Airbnb</a>
         </div>
-        <ul class="facts">
-          <li>13 huéspedes</li><li>4 habitaciones</li><li>7 camas</li><li>4,5 baños</li>
-          <li class="rating">★ 4,58 <span class="n">(12 reseñas)</span></li>
-        </ul>
-        <div class="tags">
-          <span class="tag">Piscina</span><span class="tag">Jacuzzi</span><span class="tag">Llegada autónoma</span>
-        </div>
-        <p class="pro">La que más reseñas tiene y la más barata. Capacidad para 13.</p>
-        <p class="con">Solo 7 camas para 13 personas, y la calificación es la segunda más baja.</p>
-        <p class="host">Anfitriona: Yamile · 8 años en Airbnb</p>
       </li>
-
-      <li class="card">
-        <div class="top">
-          <div>
-            <div class="rank">#2 · Descuento vigente</div>
-            <h2>Green Jay Dapa</h2>
-            <p class="place">Alojamiento en Dapa</p>
+      <li class="card" id="green-jay-dapa">
+        <a class="photo" href="https://www.airbnb.com/s/Dapa--Colombia/homes?query=Green%20Jay%20Dapa" target="_blank" rel="noopener">
+          <img src="img/green-jay-dapa.jpg" alt="Foto de Green Jay Dapa" loading="lazy" width="900" height="429">
+        </a>
+        <div class="body">
+          <div class="top">
+            <div>
+              <div class="rank">#2 · Descuento vigente</div>
+              <h3>Green Jay Dapa</h3>
+              <p class="place">Alojamiento en Dapa</p>
+            </div>
+            <div class="price">
+              <span class="was">$2.530.000</span>
+              <span class="total">$2.024.000</span>
+              <span class="night">$1.012.000 por noche</span>
+              <span class="pp">$224.889 por persona</span>
+            </div>
           </div>
-          <div class="price">
-            <span class="was">$2.530.000</span>
-            <span class="total">$2.024.000</span>
-            <span class="night">$1.012.000 por noche</span>
-          </div>
+          <ul class="facts">
+            <li>15 huéspedes</li><li>5 habitaciones</li><li>14 camas</li><li>6 baños</li>
+            <li class="rating">★ Sin calificación <span class="n">(2 reseñas)</span></li>
+          </ul>
+          <div class="tags"><span class="tag ">Piscina</span><span class="tag ">Jacuzzi</span><span class="tag ">Brasero</span><span class="tag ">Parrilla</span><span class="tag ">Cancelación gratuita</span></div>
+          <p class="pro">Sobra espacio: 14 camas y 6 baños para 9 personas. Clima fresco en Dapa.</p>
+          <p class="con">Anfitrión con solo 8 meses y 2 reseñas, aún sin calificación pública. Mayor incertidumbre.</p>
+          <p class="host">Anfitrión: Nicolas · 8 meses en Airbnb</p>
+          <a class="btn ghost" href="https://www.airbnb.com/s/Dapa--Colombia/homes?query=Green%20Jay%20Dapa" target="_blank" rel="noopener">Buscar en Airbnb</a><p class="pend">Enlace exacto pendiente. Búsqueda por nombre mientras tanto.</p>
         </div>
-        <ul class="facts">
-          <li>15 huéspedes</li><li>5 habitaciones</li><li>14 camas</li><li>6 baños</li>
-          <li class="rating">★ Sin calificación <span class="n">(2 reseñas)</span></li>
-        </ul>
-        <div class="tags">
-          <span class="tag">Piscina</span><span class="tag">Jacuzzi</span><span class="tag">Brasero</span><span class="tag">Parrilla</span><span class="tag">Cena al aire libre</span>
-        </div>
-        <p class="pro">La de mayor capacidad: 15 personas, 14 camas y 6 baños. Clima fresco en Dapa.</p>
-        <p class="con">Anfitrión con solo 8 meses y 2 reseñas, aún sin calificación pública. Mayor incertidumbre.</p>
-        <p class="host">Anfitrión: Nicolas · 8 meses en Airbnb</p>
       </li>
-
-      <li class="card">
-        <div class="top">
-          <div>
-            <div class="rank">#3 · Mejor calificación</div>
-            <h2>Cali Saladito descanso 10 pax jacuzzi Meralva</h2>
-            <p class="place">Alojamiento en Cali (El Saladito)</p>
+      <li class="card" id="saladito-meralva">
+        <a class="photo" href="https://www.airbnb.com/rooms/28667828" target="_blank" rel="noopener">
+          <img src="img/saladito-meralva.jpg" alt="Foto de Cali Saladito descanso 10 pax jacuzzi Meralva" loading="lazy" width="900" height="429">
+        </a>
+        <div class="body">
+          <div class="top">
+            <div>
+              <div class="rank">#3 · Mejor nota, pocas reseñas</div>
+              <h3>Cali Saladito descanso 10 pax jacuzzi Meralva</h3>
+              <p class="place">Chalet en El Saladito, Cali</p>
+            </div>
+            <div class="price">
+              
+              <span class="total">$2.058.563</span>
+              <span class="night">$1.029.282 por noche</span>
+              <span class="pp">$228.729 por persona</span>
+            </div>
           </div>
-          <div class="price">
-            <span class="total">$2.058.563</span>
-            <span class="night">$1.029.282 por noche</span>
-          </div>
+          <ul class="facts">
+            <li>10 huéspedes</li><li>5 habitaciones</li><li>10 camas</li><li>4,5 baños</li>
+            <li class="rating">★ 5,0 <span class="n">(3 reseñas)</span></li>
+          </ul>
+          <div class="tags"><span class="tag ">Jacuzzi</span><span class="tag ">Bosque de niebla</span><span class="tag ">Cancelación gratuita</span></div>
+          <p class="pro">Calificación perfecta, anfitriona con 8 años y una cama por persona. 5 habitaciones.</p>
+          <p class="con">No tiene piscina, solo jacuzzi. El Saladito es zona de montaña, más fría.</p>
+          <p class="host">Anfitriona: Maria · 8 años en Airbnb</p>
+          <a class="btn" href="https://www.airbnb.com/rooms/28667828?check_in=2027-01-01&check_out=2027-01-03&adults=9" target="_blank" rel="noopener">Ver en Airbnb</a>
         </div>
-        <ul class="facts">
-          <li>10 huéspedes</li><li>5 habitaciones</li><li>10 camas</li><li>4,5 baños</li>
-          <li class="rating">★ 5,0 <span class="n">(3 reseñas)</span></li>
-        </ul>
-        <div class="tags">
-          <span class="tag">Jacuzzi</span>
-        </div>
-        <p class="pro">Calificación perfecta y anfitriona con 8 años de experiencia. 5 habitaciones para 10 personas.</p>
-        <p class="con">No menciona piscina, solo jacuzzi. El Saladito es zona de montaña, más fría.</p>
-        <p class="host">Anfitriona: Maria · 8 años en Airbnb</p>
       </li>
-
-      <li class="card">
-        <div class="top">
-          <div>
-            <div class="rank">#4 · Descuento vigente</div>
-            <h2>Casa de campo con piscina y sauna km 26 vía al mar</h2>
-            <p class="place">Cabaña en Dagua</p>
+      <li class="card" id="dagua-km26">
+        <a class="photo" href="https://www.airbnb.com/rooms/1262351601757843663" target="_blank" rel="noopener">
+          <img src="img/dagua-km26.jpg" alt="Foto de Casa de campo con piscina y sauna km 26 vía al mar" loading="lazy" width="900" height="429">
+        </a>
+        <div class="body">
+          <div class="top">
+            <div>
+              <div class="rank">#4 · Descuento vigente</div>
+              <h3>Casa de campo con piscina y sauna km 26 vía al mar</h3>
+              <p class="place">Cabaña en Dagua</p>
+            </div>
+            <div class="price">
+              <span class="was">$2.290.000</span>
+              <span class="total">$2.070.000</span>
+              <span class="night">$1.035.000 por noche</span>
+              <span class="pp">$230.000 por persona</span>
+            </div>
           </div>
-          <div class="price">
-            <span class="was">$2.290.000</span>
-            <span class="total">$2.070.000</span>
-            <span class="night">$1.035.000 por noche</span>
-          </div>
+          <ul class="facts">
+            <li>10 huéspedes</li><li>4 habitaciones</li><li>10 camas</li><li>3 baños</li>
+            <li class="rating">★ 4,8 <span class="n">(5 reseñas)</span></li>
+          </ul>
+          <div class="tags"><span class="tag ">Piscina</span><span class="tag ">Sauna</span><span class="tag ">Terraza</span><span class="tag ">Cancelación gratuita</span></div>
+          <p class="pro">Buena calificación, piscina con vista, sauna y una cama por persona. Precio con descuento.</p>
+          <p class="con">Solo 3 baños para 9. Queda en la vía al mar, a unos 40 minutos de Cali.</p>
+          <p class="host">Anfitrión: Ivan Dario · 2 años en Airbnb</p>
+          <a class="btn" href="https://www.airbnb.com/rooms/1262351601757843663?check_in=2027-01-01&check_out=2027-01-03&adults=9" target="_blank" rel="noopener">Ver en Airbnb</a>
         </div>
-        <ul class="facts">
-          <li>10 huéspedes</li><li>4 habitaciones</li><li>10 camas</li><li>3 baños</li>
-          <li class="rating">★ 4,8 <span class="n">(5 reseñas)</span></li>
-        </ul>
-        <div class="tags">
-          <span class="tag">Piscina</span><span class="tag">Sauna</span><span class="tag">Terraza</span><span class="tag">Cena al aire libre</span>
-        </div>
-        <p class="pro">Buena calificación, piscina con vista y sauna. Precio con descuento.</p>
-        <p class="con">Solo 3 baños para 10 personas. Queda en la vía al mar, a unos 40 minutos de Cali.</p>
-        <p class="host">Anfitrión: Ivan Dario · 2 años en Airbnb</p>
       </li>
-
-      <li class="card">
-        <div class="top">
-          <div>
-            <div class="rank">#5 · Más cerca de la ciudad</div>
-            <h2>Finca El Jardín Pance-Cali</h2>
-            <p class="place">Casa de campo en La Voragine, Pance</p>
+      <li class="card" id="finca-el-jardin">
+        <a class="photo" href="https://www.airbnb.com/rooms/1243578139140209598" target="_blank" rel="noopener">
+          <img src="img/finca-el-jardin.jpg" alt="Foto de Finca El Jardín Pance-Cali" loading="lazy" width="900" height="429">
+        </a>
+        <div class="body">
+          <div class="top">
+            <div>
+              <div class="rank">#5 · Más cerca de la ciudad</div>
+              <h3>Finca El Jardín Pance-Cali</h3>
+              <p class="place">Casa de campo en La Voragine, Pance</p>
+            </div>
+            <div class="price">
+              
+              <span class="total">$2.422.959</span>
+              <span class="night">$1.211.480 por noche</span>
+              <span class="pp">$269.218 por persona</span>
+            </div>
           </div>
-          <div class="price">
-            <span class="total">$2.422.959</span>
-            <span class="night">$1.211.480 por noche</span>
-          </div>
+          <ul class="facts">
+            <li>10 huéspedes</li><li>3 habitaciones</li><li>10 camas</li><li>3 baños</li>
+            <li class="rating">★ 4,67 <span class="n">(3 reseñas)</span></li>
+          </ul>
+          <div class="tags"><span class="tag ">Piscina</span><span class="tag ">Brasero</span><span class="tag ">Parrilla</span><span class="tag ">Cafetera</span><span class="tag ">Cancelación gratuita</span></div>
+          <p class="pro">Pance es la zona más cercana a Cali de las seis, con piscina grande y zona de parrilla.</p>
+          <p class="con">Solo 3 habitaciones y 3 baños para 9. Más cara que las cuatro anteriores.</p>
+          <p class="host">Anfitriona: Vicky · 2 años en Airbnb</p>
+          <a class="btn" href="https://www.airbnb.com/rooms/1243578139140209598?check_in=2027-01-01&check_out=2027-01-03&adults=9" target="_blank" rel="noopener">Ver en Airbnb</a>
         </div>
-        <ul class="facts">
-          <li>10 huéspedes</li><li>3 habitaciones</li><li>10 camas</li><li>3 baños</li>
-          <li class="rating">★ 4,67 <span class="n">(3 reseñas)</span></li>
-        </ul>
-        <div class="tags">
-          <span class="tag">Piscina</span><span class="tag">Brasero</span><span class="tag">Parrilla</span><span class="tag">Cafetera</span><span class="tag">Cena al aire libre</span>
-        </div>
-        <p class="pro">Pance es la zona más cercana a Cali de las cinco, con piscina grande y zona de parrilla.</p>
-        <p class="con">La más cara, con solo 3 habitaciones y 3 baños para 10 personas.</p>
-        <p class="host">Anfitriona: Vicky · 2 años en Airbnb</p>
       </li>
-
-      <li class="card">
-        <div class="top">
-          <div>
-            <div class="rank">#6 · Mejor calificación</div>
-            <h2>Finca de recreo Dapa Cali jacuzzi 4 habitaciones</h2>
-            <p class="place">Casa de campo en Dapa, Yumbo</p>
+      <li class="card" id="finca-recreo-dapa">
+        <a class="photo" href="https://www.airbnb.com/rooms/897636893265667568" target="_blank" rel="noopener">
+          <img src="img/finca-recreo-dapa.jpg" alt="Foto de Finca de recreo Dapa Cali jacuzzi 4 habitaciones" loading="lazy" width="900" height="429">
+        </a>
+        <div class="body">
+          <div class="top">
+            <div>
+              <div class="rank">#6 · Mejor calificación</div>
+              <h3>Finca de recreo Dapa Cali jacuzzi 4 habitaciones</h3>
+              <p class="place">Casa de campo en Dapa, Yumbo</p>
+            </div>
+            <div class="price">
+              
+              <span class="total">$3.547.177</span>
+              <span class="night">$1.773.588 por noche</span>
+              <span class="pp">$394.131 por persona</span>
+            </div>
           </div>
-          <div class="price">
-            <span class="total">$3.547.177</span>
-            <span class="night">$1.773.589 por noche</span>
-          </div>
+          <ul class="facts">
+            <li>11 huéspedes</li><li>4 habitaciones</li><li>8 camas</li><li>3 baños</li>
+            <li class="rating">★ 4,92 <span class="n">(24 reseñas)</span></li>
+          </ul>
+          <div class="tags"><span class="tag fav">Favorito entre huéspedes</span><span class="tag ">Jacuzzi</span><span class="tag ">Cocina al aire libre</span><span class="tag ">Brasero</span><span class="tag ">Parrilla</span><span class="tag ">Cancelación gratuita</span></div>
+          <p class="pro">La finca más confiable: 4,92 con 24 reseñas y sello de favorito. Casa colonial muy cuidada.</p>
+          <p class="con">Cuesta un 75 % más que las demás fincas. No menciona piscina, solo jacuzzi. 8 camas para 9.</p>
+          <p class="host">Anfitrión: Danny · 3 años en Airbnb</p>
+          <a class="btn" href="https://www.airbnb.com/rooms/897636893265667568?check_in=2027-01-01&check_out=2027-01-03&adults=9" target="_blank" rel="noopener">Ver en Airbnb</a>
         </div>
-        <ul class="facts">
-          <li>11 huéspedes</li><li>4 habitaciones</li><li>8 camas</li><li>3 baños</li>
-          <li class="rating">★ 4,92 <span class="n">(24 reseñas)</span></li>
-        </ul>
-        <div class="tags">
-          <span class="tag fav">Favorito entre huéspedes</span><span class="tag">Jacuzzi</span><span class="tag">Cocina al aire libre</span><span class="tag">Brasero</span><span class="tag">Parrilla</span>
-        </div>
-        <p class="pro">La finca más confiable: 4,92 con 24 reseñas y sello de favorito. Casa colonial muy cuidada.</p>
-        <p class="con">Cuesta un 75 % más que las demás fincas. No menciona piscina, solo jacuzzi.</p>
-        <p class="host">Anfitrión: Danny · 3 años en Airbnb</p>
       </li>
-
-    </ol>
+      </ol>
     </section>
-
     <footer>
       <a href="https://github.com/mayckths/cali">Editar en GitHub</a>
     </footer>
