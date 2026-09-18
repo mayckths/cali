@@ -75,11 +75,32 @@
       background: var(--accent); color: var(--accent-fg); font-weight: 600; text-decoration: none; }
     .btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
     .pend { margin: 6px 0 0; font-size: 0.8rem; color: var(--muted); text-align: center; }
+    .summary.two { grid-template-columns: 1fr 1fr; }
+    .summary.two strong { font-size: 0.95rem; }
+    ol.flights { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+    .flight { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+    .ftop { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+    .times strong { font-size: 1.25rem; }
+    .times .arrow { color: var(--muted); margin: 0 8px; }
+    .times .codes { display: block; color: var(--muted); font-size: 0.85rem; }
+    .fprice { text-align: right; white-space: nowrap; }
+    .fprice strong { display: block; color: var(--accent); font-size: 1.1rem; }
+    .fprice span { display: block; color: var(--muted); font-size: 0.75rem; }
+    .airline { font-weight: 600; margin-top: 8px; }
+    .fnotes { margin: 6px 0 0; padding-left: 18px; color: var(--muted); font-size: 0.85rem; }
+    .fnotes li { margin: 2px 0; }
+    details.barrio { margin: 0 0 12px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; }
+    details.barrio summary { cursor: pointer; padding: 10px 0; font-weight: 600; font-size: 0.9rem; }
+    details.barrio p { margin: 0 0 10px; font-size: 0.9rem; color: var(--fg); }
+    details.barrio[open] summary { border-bottom: 1px solid var(--line); margin-bottom: 10px; }
     footer { margin-top: 32px; color: var(--muted); font-size: 0.85rem; text-align: center; }
     footer a { color: var(--accent); text-decoration: none; }
     @media (max-width: 480px) {
       .summary { grid-template-columns: 1fr 1fr; }
       .top { flex-direction: column; }
+      .ftop { flex-direction: column; }
+      .fprice { text-align: left; }
+      .summary.two { grid-template-columns: 1fr; }
       .each small { margin-left: 0; width: 100%; }
       .price { text-align: left; }
     }
@@ -92,6 +113,45 @@
       <p>Somos 9. Opciones en Airbnb para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy.</p>
       <p class="note">Precios en COP tal como aparecían en Airbnb el 18 de septiembre de 2026. Pueden cambiar. El precio por persona divide el total entre 9. Los botones abren Airbnb con las fechas y las 9 personas ya puestas.</p>
     </header>
+
+    <section class="leg" aria-labelledby="vuelos">
+      <h2 class="leg-title" id="vuelos">Vuelos</h2>
+      <p class="leg-sub">Bogotá (BOG) a Cali (CLO). Ida y vuelta, por persona. Vistos en Google Flights el 18 de septiembre de 2026.</p>
+      <div class="summary two">
+        <div><span>Rango por persona</span><strong>$366.425 a $394.390</strong></div>
+        <div><span>Aerolíneas</span><strong>Wingo, JetSMART, LATAM</strong></div>
+      </div>
+      <ol class="flights">
+      <li class="flight">
+        <div class="ftop">
+          <div class="times"><strong>7:10</strong><span class="arrow">→</span><strong>8:18</strong>
+            <span class="codes">BOG a CLO · 1 h 8 min</span></div>
+          <div class="fprice"><strong>$366.425</strong><span>ida y vuelta, por persona</span></div>
+        </div>
+        <div class="airline">Wingo</div>
+        <ul class="fnotes"><li>Directo</li><li>Solo artículo personal, sin equipaje de mano</li><li>Billetes separados: ida y vuelta se compran aparte</li></ul>
+      </li>
+      <li class="flight">
+        <div class="ftop">
+          <div class="times"><strong>5:05</strong><span class="arrow">→</span><strong>6:19</strong>
+            <span class="codes">BOG a CLO · 1 h 14 min</span></div>
+          <div class="fprice"><strong>$393.790</strong><span>ida y vuelta, por persona</span></div>
+        </div>
+        <div class="airline">JetSMART</div>
+        <ul class="fnotes"><li>Directo</li><li>Solo artículo personal, sin equipaje de mano</li><li>Un solo billete</li></ul>
+      </li>
+      <li class="flight">
+        <div class="ftop">
+          <div class="times"><strong>14:05</strong><span class="arrow">→</span><strong>15:15</strong>
+            <span class="codes">BOG a CLO · 1 h 10 min</span></div>
+          <div class="fprice"><strong>$394.390</strong><span>ida y vuelta, por persona</span></div>
+        </div>
+        <div class="airline">LATAM</div>
+        <ul class="fnotes"><li>Directo</li><li>Solo artículo personal, sin equipaje de mano</li><li>Billetes separados: ida y vuelta se compran aparte</li></ul>
+      </li>
+      </ol>
+      <p class="note">Ninguna tarifa incluye maleta de mano en cabina, solo un artículo personal. Sumar la maleta puede cambiar cuál es la más barata.</p>
+    </section>
 
     <section class="leg" aria-labelledby="ciudad">
       <h2 class="leg-title" id="ciudad">En la ciudad</h2>
@@ -121,6 +181,7 @@
             <li class="rating">★ 4,89 <span class="n">(18 reseñas)</span></li>
           </ul>
           <div class="tags"><span class="tag fav">Favorito entre huéspedes</span><span class="tag ">Superanfitriona</span><span class="tag ">Cancelación gratuita</span></div>
+          <details class="barrio"><summary>Sobre el barrio: Granada</summary><p>Es la zona gastronómica de Cali: en pocas cuadras, sobre la Avenida 9N y sus alrededores, se concentran restaurantes, cafés, bares y boutiques. Es el barrio para salir a comer y a tomar algo sin coger taxi.</p><p>Queda al norte del centro, a unos 10 minutos a pie del Boulevard del Río y del barrio El Peñón, y a unos 10 minutos en carro del centro comercial Chipichape.</p><p>De noche hay mucho movimiento, sobre todo en fin de año. Es de las zonas más seguras para caminar, aunque conviene volver por las calles principales.</p></details>
           <p class="pro">La más barata de la ciudad, en Granada, la zona de restaurantes y rumba. Superanfitriona con 8 años.</p>
           <p class="con">Solo 5 camas para 9 personas: al menos 4 tendrían que compartir cama. 2,5 baños para todos.</p>
           <p class="host">Anfitriona: Samilis · Superanfitriona · 8 años en Airbnb</p>
@@ -150,6 +211,7 @@
             <li class="rating">★ 4,8 <span class="n">(5 reseñas)</span></li>
           </ul>
           <div class="tags"><span class="tag ">Aire acondicionado</span><span class="tag ">Barrio histórico</span><span class="tag ">Cancelación gratuita</span></div>
+          <details class="barrio"><summary>Sobre el barrio: San Antonio</summary><p>Es el barrio colonial de Cali, en una loma con casas de colores, calles empinadas y la iglesia de San Antonio en la cima, con el mejor mirador de la ciudad para ver el atardecer.</p><p>Tiene cafés, restaurantes pequeños, teatros y tiendas de artesanías. Bajando la loma se llega caminando al centro histórico, a la Plaza de Cayzedo y a La Ermita, y en 15 minutos a El Peñón. La Loma de la Cruz, con su mercado artesanal, queda al lado.</p><p>Es la zona más turística y con más ambiente bohemio. Las calles principales son tranquilas, pero de noche es mejor no alejarse hacia los bordes del barrio.</p></details>
           <p class="pro">5 habitaciones y 5 baños, la mejor distribución para 9. San Antonio es el barrio más pintoresco y se camina a todo.</p>
           <p class="con">Solo 5 reseñas. 6 camas para 9, así que 3 comparten.</p>
           <p class="host">Anfitriona: Alba · 3 años en Airbnb</p>
@@ -179,6 +241,7 @@
             <li class="rating">★ 4,95 <span class="n">(110 reseñas)</span></li>
           </ul>
           <div class="tags"><span class="tag fav">Favorito entre huéspedes</span><span class="tag ">Piscina compartida</span><span class="tag ">Dos pisos</span></div>
+          <details class="barrio"><summary>Sobre el barrio: Sur de Cali</summary><p>Según la descripción del anuncio queda cerca del centro comercial Unicentro y de Holguines Trade Center, en el sur de la ciudad, una zona residencial y de estrato alto, con edificios con piscina y portería.</p><p>Es cómodo para ir a Pance y al río, y tiene supermercados y centros comerciales a mano, pero para salir a comer o a rumbear hay que coger taxi: Granada y San Antonio quedan a 25 o 30 minutos en carro.</p><p>Es la opción más tranquila y segura de las tres, a cambio de estar lejos del ambiente.</p></details>
           <p class="pro">El más probado: 110 reseñas con 4,95. Acabados modernos y anfitrión profesional.</p>
           <p class="con">Casi el doble que Granada. Cabe exactamente 9, con 5 camas, y no muestra cancelación gratuita.</p>
           <p class="host">Anfitrión: Zenya Host · 2 años en Airbnb</p>
@@ -216,6 +279,7 @@
             <li class="rating">★ 4,58 <span class="n">(12 reseñas)</span></li>
           </ul>
           <div class="tags"><span class="tag ">Piscina</span><span class="tag ">Jacuzzi</span><span class="tag ">Llegada autónoma</span><span class="tag ">Cancelación gratuita</span></div>
+          
           <p class="pro">La más barata y la que más reseñas tiene entre las fincas. Piscina grande y jacuzzi.</p>
           <p class="con">7 camas para 9: dos comparten. La calificación es la más baja del grupo.</p>
           <p class="host">Anfitriona: Yamile · 8 años en Airbnb</p>
@@ -245,6 +309,7 @@
             <li class="rating">★ Sin calificación <span class="n">(2 reseñas)</span></li>
           </ul>
           <div class="tags"><span class="tag ">Piscina</span><span class="tag ">Jacuzzi</span><span class="tag ">Brasero</span><span class="tag ">Parrilla</span><span class="tag ">Cancelación gratuita</span></div>
+          
           <p class="pro">Sobra espacio: 14 camas y 6 baños para 9 personas. Clima fresco en Dapa.</p>
           <p class="con">Anfitrión con solo 8 meses y 2 reseñas, aún sin calificación pública. Mayor incertidumbre.</p>
           <p class="host">Anfitrión: Nicolas · 8 meses en Airbnb</p>
@@ -274,6 +339,7 @@
             <li class="rating">★ 5,0 <span class="n">(3 reseñas)</span></li>
           </ul>
           <div class="tags"><span class="tag ">Jacuzzi</span><span class="tag ">Bosque de niebla</span><span class="tag ">Cancelación gratuita</span></div>
+          
           <p class="pro">Calificación perfecta, anfitriona con 8 años y una cama por persona. 5 habitaciones.</p>
           <p class="con">No tiene piscina, solo jacuzzi. El Saladito es zona de montaña, más fría.</p>
           <p class="host">Anfitriona: Maria · 8 años en Airbnb</p>
@@ -303,6 +369,7 @@
             <li class="rating">★ 4,8 <span class="n">(5 reseñas)</span></li>
           </ul>
           <div class="tags"><span class="tag ">Piscina</span><span class="tag ">Sauna</span><span class="tag ">Terraza</span><span class="tag ">Cancelación gratuita</span></div>
+          
           <p class="pro">Buena calificación, piscina con vista, sauna y una cama por persona. Precio con descuento.</p>
           <p class="con">Solo 3 baños para 9. Queda en la vía al mar, a unos 40 minutos de Cali.</p>
           <p class="host">Anfitrión: Ivan Dario · 2 años en Airbnb</p>
@@ -332,6 +399,7 @@
             <li class="rating">★ 4,67 <span class="n">(3 reseñas)</span></li>
           </ul>
           <div class="tags"><span class="tag ">Piscina</span><span class="tag ">Brasero</span><span class="tag ">Parrilla</span><span class="tag ">Cafetera</span><span class="tag ">Cancelación gratuita</span></div>
+          
           <p class="pro">Pance es la zona más cercana a Cali de las seis, con piscina grande y zona de parrilla.</p>
           <p class="con">Solo 3 habitaciones y 3 baños para 9. Más cara que las cuatro anteriores.</p>
           <p class="host">Anfitriona: Vicky · 2 años en Airbnb</p>
@@ -361,6 +429,7 @@
             <li class="rating">★ 4,92 <span class="n">(24 reseñas)</span></li>
           </ul>
           <div class="tags"><span class="tag fav">Favorito entre huéspedes</span><span class="tag ">Jacuzzi</span><span class="tag ">Cocina al aire libre</span><span class="tag ">Brasero</span><span class="tag ">Parrilla</span><span class="tag ">Cancelación gratuita</span></div>
+          
           <p class="pro">La finca más confiable: 4,92 con 24 reseñas y sello de favorito. Casa colonial muy cuidada.</p>
           <p class="con">Cuesta un 75 % más que las demás fincas. No menciona piscina, solo jacuzzi. 8 camas para 9.</p>
           <p class="host">Anfitrión: Danny · 3 años en Airbnb</p>
@@ -372,13 +441,14 @@
 
     <section class="leg" aria-labelledby="total">
       <h2 class="leg-title" id="total">Cuánto paga cada uno en total</h2>
-      <p class="leg-sub">Ciudad más finca, 6 noches, dividido entre 9. En pesos colombianos. Filas: finca. Columnas: ciudad.</p>
+      <p class="leg-sub">Ciudad más finca, 6 noches, dividido entre 9. En pesos colombianos, sin vuelo. Filas: finca. Columnas: ciudad.</p>
       <div class="tablewrap">
         <table class="combos">
           <thead><tr><th scope="col">Finca / Ciudad</th><th scope="col">Granada</th><th scope="col">Casa Alba</th><th scope="col">Luxury 502</th></tr></thead>
           <tbody><tr><th scope="row">Villa Campestre</th><td>639.019</td><td>686.621</td><td>899.341</td></tr><tr><th scope="row">Green Jay</th><td>643.675</td><td>691.277</td><td>903.996</td></tr><tr><th scope="row">Meralva</th><td>647.515</td><td>695.117</td><td>907.837</td></tr><tr><th scope="row">Dagua km 26</th><td>648.786</td><td>696.388</td><td>909.108</td></tr><tr><th scope="row">El Jardín Pance</th><td>688.003</td><td>735.606</td><td>948.325</td></tr><tr><th scope="row">Finca Dapa</th><td>812.916</td><td>860.519</td><td>1.073.238</td></tr></tbody>
         </table>
       </div>
+      <p class="note">Con el vuelo, suma entre $366.425 y $394.390 a cada casilla. La combinación más barata, Granada más Villa Campestre, queda entre $1.005.444 y $1.033.409 por persona.</p>
     </section>
     <footer>
       <a href="https://github.com/mayckths/cali">Editar en GitHub</a>
