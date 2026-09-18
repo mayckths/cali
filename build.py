@@ -81,7 +81,7 @@ FINCA = dict(
              pro="Sobra espacio: 14 camas y 6 baños para 9 personas. Clima fresco en Dapa.",
              con="Anfitrión con solo 8 meses y 2 reseñas, aún sin calificación pública. Mayor incertidumbre.",
              host="Anfitrión: Nicolas · 8 meses en Airbnb",
-             url=None, buscar="https://www.airbnb.com/s/Dapa--Colombia/homes?query=Green%20Jay%20Dapa"),
+             url="https://www.airbnb.com/rooms/1511142141665799976"),
         dict(slug="saladito-meralva", corto="Meralva", rank="Mejor nota, pocas reseñas",
              nombre="Cali Saladito descanso 10 pax jacuzzi Meralva", lugar="Chalet en El Saladito, Cali",
              precio=2058563, antes=None, cap=10, hab=5, camas=10, banos="4,5", nota="5,0", resenas=3,
@@ -132,7 +132,6 @@ def barrio(it):
 def vuelos():
     cards = ""
     for v in VUELOS["items"]:
-        notas = "".join(f"<li>{escape(n)}</li>" for n in v["notas"])
         cards += f'''
       <li class="flight">
         <div class="ftop">
@@ -141,20 +140,18 @@ def vuelos():
           <div class="fprice"><strong>{cop(v["precio"])}</strong><span>ida y vuelta, por persona</span></div>
         </div>
         <div class="airline">{escape(v["aerolinea"])}</div>
-        <ul class="fnotes">{notas}</ul>
       </li>'''
     return f'''
-    <section class="leg" aria-labelledby="vuelos">
-      <h2 class="leg-title" id="vuelos">Vuelos</h2>
-      <p class="leg-sub">{escape(VUELOS["ruta"])}. {escape(VUELOS["sub"])}</p>
+    <details class="leg" id="vuelos">
+      <summary><span class="leg-title">Vuelos</span><span class="leg-sub">{escape(VUELOS["ruta"])} · {cop(VUELO_MIN)} a {cop(VUELO_MAX)} por persona</span></summary>
       <div class="summary two">
         <div><span>Rango por persona</span><strong>{cop(VUELO_MIN)} a {cop(VUELO_MAX)}</strong></div>
         <div><span>Aerolíneas</span><strong>{", ".join(v["aerolinea"] for v in VUELOS["items"])}</strong></div>
       </div>
       <ol class="flights">{cards}
       </ol>
-      <p class="note">Ninguna tarifa incluye maleta de mano en cabina, solo un artículo personal. Sumar la maleta puede cambiar cuál es la más barata.</p>
-    </section>'''
+      <p class="note">{escape(VUELOS["sub"])}</p>
+    </details>'''
 
 
 def card(i, it, leg):
@@ -195,7 +192,6 @@ def card(i, it, leg):
           {barrio(it)}
           <p class="pro">{escape(it["pro"])}</p>
           <p class="con">{escape(it["con"])}</p>
-          <p class="host">{escape(it["host"])}</p>
           {btn}
         </div>
       </li>'''
@@ -205,13 +201,12 @@ def leg(l):
     res = "".join(f'<div><span>{escape(a)}</span><strong>{escape(b)}</strong></div>' for a, b in l["resumen"])
     cards = "".join(card(i + 1, it, l) for i, it in enumerate(l["items"]))
     return f'''
-    <section class="leg" aria-labelledby="{l["id"]}">
-      <h2 class="leg-title" id="{l["id"]}">{escape(l["titulo"])}</h2>
-      <p class="leg-sub">{escape(l["sub"])}</p>
+    <details class="leg" id="{l["id"]}">
+      <summary><span class="leg-title">{escape(l["titulo"])}</span><span class="leg-sub">{escape(l["sub"])} · {len(l["items"])} opciones</span></summary>
       <div class="summary">{res}</div>
       <ol class="cards">{cards}
       </ol>
-    </section>'''
+    </details>'''
 
 
 CSS = """
@@ -220,13 +215,6 @@ CSS = """
       --accent: #2563eb; --accent-fg: #ffffff; --accent-bg: #eff4ff;
       --good: #15803d; --good-bg: #ecfdf3; --warn: #b45309; --warn-bg: #fff7ed; --tag-bg: #f1f1ef;
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #121212; --card: #1c1c1c; --fg: #f0f0f0; --muted: #9a9a9a; --line: #2c2c2c;
-        --accent: #60a5fa; --accent-fg: #0b1220; --accent-bg: #16213a;
-        --good: #4ade80; --good-bg: #14291b; --warn: #fbbf24; --warn-bg: #2b2210; --tag-bg: #262626;
-      }
-    }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--bg); color: var(--fg);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.5; }
@@ -234,9 +222,20 @@ CSS = """
     header h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); margin: 0 0 4px; letter-spacing: -0.02em; }
     header p { margin: 0; color: var(--muted); }
     .note { font-size: 0.85rem; color: var(--muted); margin: 12px 0 0; }
-    section.leg { margin-top: 36px; }
-    .leg-title { font-size: 1.4rem; margin: 0 0 2px; letter-spacing: -0.01em; }
-    .leg-sub { color: var(--muted); margin: 0 0 8px; }
+    section.leg, details.leg { margin-top: 24px; }
+    details.leg { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 0 16px; }
+    details.leg > summary { list-style: none; cursor: pointer; padding: 16px 0; display: flex; flex-direction: column; gap: 2px; position: relative; }
+    details.leg > summary::-webkit-details-marker { display: none; }
+    details.leg > summary::after { content: "+"; position: absolute; right: 0; top: 14px; font-size: 1.6rem; line-height: 1; color: var(--muted); }
+    details.leg[open] > summary::after { content: "–"; }
+    details.leg[open] > summary { border-bottom: 1px solid var(--line); margin-bottom: 4px; }
+    details.leg > *:last-child { padding-bottom: 16px; }
+    .leg-title { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.01em; display: block; padding-right: 32px; }
+    .leg-sub { color: var(--muted); margin: 0 0 8px; display: block; font-size: 0.95rem; }
+    details.leg .cards { margin-bottom: 4px; }
+    details.leg .card { background: var(--bg); }
+    details.leg .flight { background: var(--bg); }
+    details.leg .summary div { background: var(--bg); }
     .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0 16px; }
     .summary div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
     .summary span { display: block; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
@@ -296,8 +295,6 @@ CSS = """
     .fprice strong { display: block; color: var(--accent); font-size: 1.1rem; }
     .fprice span { display: block; color: var(--muted); font-size: 0.75rem; }
     .airline { font-weight: 600; margin-top: 8px; }
-    .fnotes { margin: 6px 0 0; padding-left: 18px; color: var(--muted); font-size: 0.85rem; }
-    .fnotes li { margin: 2px 0; }
     details.barrio { margin: 0 0 12px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; }
     details.barrio summary { cursor: pointer; padding: 10px 0; font-weight: 600; font-size: 0.9rem; }
     details.barrio p { margin: 0 0 10px; font-size: 0.9rem; color: var(--fg); }
@@ -340,6 +337,7 @@ HTML = f'''<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
   <title>Cali, fin de año</title>
   <meta name="description" content="Comparación de alojamientos en Airbnb para el viaje a Cali del 28 de diciembre al 3 de enero, {PERSONAS} personas.">
   <style>{CSS}  </style>
