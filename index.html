@@ -8,13 +8,13 @@
   <style>
     :root {
       --bg: #f7f7f5; --card: #ffffff; --fg: #1c1c1c; --muted: #6b6b6b; --line: #e5e5e2;
-      --accent: #2563eb; --accent-fg: #ffffff;
+      --accent: #2563eb; --accent-fg: #ffffff; --accent-bg: #eff4ff;
       --good: #15803d; --good-bg: #ecfdf3; --warn: #b45309; --warn-bg: #fff7ed; --tag-bg: #f1f1ef;
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #121212; --card: #1c1c1c; --fg: #f0f0f0; --muted: #9a9a9a; --line: #2c2c2c;
-        --accent: #60a5fa; --accent-fg: #0b1220;
+        --accent: #60a5fa; --accent-fg: #0b1220; --accent-bg: #16213a;
         --good: #4ade80; --good-bg: #14291b; --warn: #fbbf24; --warn-bg: #2b2210; --tag-bg: #262626;
       }
     }
@@ -45,7 +45,20 @@
     .price .total { font-weight: 700; font-size: 1.1rem; display: block; }
     .price .was { color: var(--muted); text-decoration: line-through; font-size: 0.85rem; display: block; }
     .price .night { color: var(--muted); font-size: 0.8rem; display: block; }
-    .price .pp { color: var(--accent); font-size: 0.85rem; font-weight: 600; display: block; margin-top: 2px; }
+    .each { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin: 12px 0 0;
+      padding: 10px 12px; border-radius: 10px; background: var(--accent-bg); }
+    .each span { color: var(--muted); font-size: 0.85rem; }
+    .each strong { color: var(--accent); font-size: 1.25rem; }
+    .each small { color: var(--muted); font-size: 0.8rem; margin-left: auto; }
+    .tablewrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+    table.combos { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+    .combos th, .combos td { padding: 10px 8px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    .combos th[scope="row"], .combos thead th:first-child { text-align: left; font-weight: 500;
+      white-space: normal; color: var(--fg); }
+    .combos thead th { font-size: 0.8rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }
+    .combos tbody tr:last-child th, .combos tbody tr:last-child td { border-bottom: 0; }
+    .combos td { font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+    @media (max-width: 420px) { table.combos { font-size: 0.8rem; } .combos th, .combos td { padding: 9px 5px; } .combos thead th { font-size: 0.7rem; } }
     .facts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 12px 0 10px; padding: 0; list-style: none; font-size: 0.95rem; }
     .facts li::before { content: "· "; color: var(--muted); }
     .facts li:first-child::before { content: ""; }
@@ -67,6 +80,7 @@
     @media (max-width: 480px) {
       .summary { grid-template-columns: 1fr 1fr; }
       .top { flex-direction: column; }
+      .each small { margin-left: 0; width: 100%; }
       .price { text-align: left; }
     }
   </style>
@@ -99,9 +113,9 @@
               <span class="was">$4.177.299</span>
               <span class="total">$3.769.071</span>
               <span class="night">$942.268 por noche</span>
-              <span class="pp">$418.786 por persona</span>
             </div>
           </div>
+          <p class="each"><span>Cada uno paga</span><strong>$418.786</strong><small>entre 9, por 4 noches</small></p>
           <ul class="facts">
             <li>10 huéspedes</li><li>3 habitaciones</li><li>5 camas</li><li>2,5 baños</li>
             <li class="rating">★ 4,89 <span class="n">(18 reseñas)</span></li>
@@ -128,9 +142,9 @@
               
               <span class="total">$4.197.491</span>
               <span class="night">$1.049.373 por noche</span>
-              <span class="pp">$466.388 por persona</span>
             </div>
           </div>
+          <p class="each"><span>Cada uno paga</span><strong>$466.388</strong><small>entre 9, por 4 noches</small></p>
           <ul class="facts">
             <li>12 huéspedes</li><li>5 habitaciones</li><li>6 camas</li><li>5 baños</li>
             <li class="rating">★ 4,8 <span class="n">(5 reseñas)</span></li>
@@ -157,9 +171,9 @@
               <span class="was">$6.774.509</span>
               <span class="total">$6.111.968</span>
               <span class="night">$1.527.992 por noche</span>
-              <span class="pp">$679.108 por persona</span>
             </div>
           </div>
+          <p class="each"><span>Cada uno paga</span><strong>$679.108</strong><small>entre 9, por 4 noches</small></p>
           <ul class="facts">
             <li>9 huéspedes</li><li>4 habitaciones</li><li>5 camas</li><li>2,5 baños</li>
             <li class="rating">★ 4,95 <span class="n">(110 reseñas)</span></li>
@@ -194,9 +208,9 @@
               
               <span class="total">$1.982.098</span>
               <span class="night">$991.049 por noche</span>
-              <span class="pp">$220.233 por persona</span>
             </div>
           </div>
+          <p class="each"><span>Cada uno paga</span><strong>$220.233</strong><small>entre 9, por 2 noches</small></p>
           <ul class="facts">
             <li>13 huéspedes</li><li>4 habitaciones</li><li>7 camas</li><li>4,5 baños</li>
             <li class="rating">★ 4,58 <span class="n">(12 reseñas)</span></li>
@@ -223,9 +237,9 @@
               <span class="was">$2.530.000</span>
               <span class="total">$2.024.000</span>
               <span class="night">$1.012.000 por noche</span>
-              <span class="pp">$224.889 por persona</span>
             </div>
           </div>
+          <p class="each"><span>Cada uno paga</span><strong>$224.889</strong><small>entre 9, por 2 noches</small></p>
           <ul class="facts">
             <li>15 huéspedes</li><li>5 habitaciones</li><li>14 camas</li><li>6 baños</li>
             <li class="rating">★ Sin calificación <span class="n">(2 reseñas)</span></li>
@@ -252,9 +266,9 @@
               
               <span class="total">$2.058.563</span>
               <span class="night">$1.029.282 por noche</span>
-              <span class="pp">$228.729 por persona</span>
             </div>
           </div>
+          <p class="each"><span>Cada uno paga</span><strong>$228.729</strong><small>entre 9, por 2 noches</small></p>
           <ul class="facts">
             <li>10 huéspedes</li><li>5 habitaciones</li><li>10 camas</li><li>4,5 baños</li>
             <li class="rating">★ 5,0 <span class="n">(3 reseñas)</span></li>
@@ -281,9 +295,9 @@
               <span class="was">$2.290.000</span>
               <span class="total">$2.070.000</span>
               <span class="night">$1.035.000 por noche</span>
-              <span class="pp">$230.000 por persona</span>
             </div>
           </div>
+          <p class="each"><span>Cada uno paga</span><strong>$230.000</strong><small>entre 9, por 2 noches</small></p>
           <ul class="facts">
             <li>10 huéspedes</li><li>4 habitaciones</li><li>10 camas</li><li>3 baños</li>
             <li class="rating">★ 4,8 <span class="n">(5 reseñas)</span></li>
@@ -310,9 +324,9 @@
               
               <span class="total">$2.422.959</span>
               <span class="night">$1.211.480 por noche</span>
-              <span class="pp">$269.218 por persona</span>
             </div>
           </div>
+          <p class="each"><span>Cada uno paga</span><strong>$269.218</strong><small>entre 9, por 2 noches</small></p>
           <ul class="facts">
             <li>10 huéspedes</li><li>3 habitaciones</li><li>10 camas</li><li>3 baños</li>
             <li class="rating">★ 4,67 <span class="n">(3 reseñas)</span></li>
@@ -339,9 +353,9 @@
               
               <span class="total">$3.547.177</span>
               <span class="night">$1.773.588 por noche</span>
-              <span class="pp">$394.131 por persona</span>
             </div>
           </div>
+          <p class="each"><span>Cada uno paga</span><strong>$394.131</strong><small>entre 9, por 2 noches</small></p>
           <ul class="facts">
             <li>11 huéspedes</li><li>4 habitaciones</li><li>8 camas</li><li>3 baños</li>
             <li class="rating">★ 4,92 <span class="n">(24 reseñas)</span></li>
@@ -354,6 +368,17 @@
         </div>
       </li>
       </ol>
+    </section>
+
+    <section class="leg" aria-labelledby="total">
+      <h2 class="leg-title" id="total">Cuánto paga cada uno en total</h2>
+      <p class="leg-sub">Ciudad más finca, 6 noches, dividido entre 9. En pesos colombianos. Filas: finca. Columnas: ciudad.</p>
+      <div class="tablewrap">
+        <table class="combos">
+          <thead><tr><th scope="col">Finca / Ciudad</th><th scope="col">Granada</th><th scope="col">Casa Alba</th><th scope="col">Luxury 502</th></tr></thead>
+          <tbody><tr><th scope="row">Villa Campestre</th><td>639.019</td><td>686.621</td><td>899.341</td></tr><tr><th scope="row">Green Jay</th><td>643.675</td><td>691.277</td><td>903.996</td></tr><tr><th scope="row">Meralva</th><td>647.515</td><td>695.117</td><td>907.837</td></tr><tr><th scope="row">Dagua km 26</th><td>648.786</td><td>696.388</td><td>909.108</td></tr><tr><th scope="row">El Jardín Pance</th><td>688.003</td><td>735.606</td><td>948.325</td></tr><tr><th scope="row">Finca Dapa</th><td>812.916</td><td>860.519</td><td>1.073.238</td></tr></tbody>
+        </table>
+      </div>
     </section>
     <footer>
       <a href="https://github.com/mayckths/cali">Editar en GitHub</a>

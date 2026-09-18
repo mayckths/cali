@@ -10,7 +10,7 @@ CIUDAD = dict(
     noches=4, check_in="2026-12-28", check_out="2027-01-01",
     resumen=[("Más barata", "Casa en Granada"), ("Más reseñas", "Luxury 502"), ("Más camas y baños", "Casa Alba")],
     items=[
-        dict(slug="casa-granada", rank="Precio más bajo · Descuento vigente",
+        dict(slug="casa-granada", corto="Granada", rank="Precio más bajo · Descuento vigente",
              nombre="Casa en Granada cerca a dining & nightlife", lugar="Casa en el barrio Granada, Cali",
              precio=3769071, antes=4177299, cap=10, hab=3, camas=5, banos="2,5", nota="4,89", resenas=18,
              tags=[("Favorito entre huéspedes", "fav"), ("Superanfitriona", ""), ("Cancelación gratuita", "")],
@@ -18,7 +18,7 @@ CIUDAD = dict(
              con="Solo 5 camas para 9 personas: al menos 4 tendrían que compartir cama. 2,5 baños para todos.",
              host="Anfitriona: Samilis · Superanfitriona · 8 años en Airbnb",
              url=None, buscar="https://www.airbnb.com/s/Cali--Colombia/homes?query=Casa%20en%20Granada%20cerca%20a%20dining%20nightlife"),
-        dict(slug="casa-alba", rank="Más habitaciones y baños",
+        dict(slug="casa-alba", corto="Casa Alba", rank="Más habitaciones y baños",
              nombre="Casa Alba - San Antonio", lugar="Casa en San Antonio, Cali",
              precio=4197491, antes=None, cap=12, hab=5, camas=6, banos="5", nota="4,8", resenas=5,
              tags=[("Aire acondicionado", ""), ("Barrio histórico", ""), ("Cancelación gratuita", "")],
@@ -26,7 +26,7 @@ CIUDAD = dict(
              con="Solo 5 reseñas. 6 camas para 9, así que 3 comparten.",
              host="Anfitriona: Alba · 3 años en Airbnb",
              url="https://www.airbnb.com/rooms/1063628642244199346"),
-        dict(slug="luxury-502", rank="Más reseñas · Descuento vigente",
+        dict(slug="luxury-502", corto="Luxury 502", rank="Más reseñas · Descuento vigente",
              nombre="Luxury apartamento en Cali 502", lugar="Apartamento dúplex en Cali",
              precio=6111968, antes=6774509, cap=9, hab=4, camas=5, banos="2,5", nota="4,95", resenas=110,
              tags=[("Favorito entre huéspedes", "fav"), ("Piscina compartida", ""), ("Dos pisos", "")],
@@ -41,7 +41,7 @@ FINCA = dict(
     noches=2, check_in="2027-01-01", check_out="2027-01-03",
     resumen=[("Más barata", "Villa Campestre"), ("Mejor calificada", "Finca de recreo Dapa"), ("Más camas", "Green Jay Dapa")],
     items=[
-        dict(slug="villa-campestre", rank="Precio más bajo",
+        dict(slug="villa-campestre", corto="Villa Campestre", rank="Precio más bajo",
              nombre="Espectacular Villa Campestre", lugar="Villa en Jamundí",
              precio=1982098, antes=None, cap=13, hab=4, camas=7, banos="4,5", nota="4,58", resenas=12,
              tags=[("Piscina", ""), ("Jacuzzi", ""), ("Llegada autónoma", ""), ("Cancelación gratuita", "")],
@@ -49,7 +49,7 @@ FINCA = dict(
              con="7 camas para 9: dos comparten. La calificación es la más baja del grupo.",
              host="Anfitriona: Yamile · 8 años en Airbnb",
              url="https://www.airbnb.com/rooms/33601199"),
-        dict(slug="green-jay-dapa", rank="Descuento vigente",
+        dict(slug="green-jay-dapa", corto="Green Jay", rank="Descuento vigente",
              nombre="Green Jay Dapa", lugar="Alojamiento en Dapa",
              precio=2024000, antes=2530000, cap=15, hab=5, camas=14, banos="6", nota=None, resenas=2,
              tags=[("Piscina", ""), ("Jacuzzi", ""), ("Brasero", ""), ("Parrilla", ""), ("Cancelación gratuita", "")],
@@ -57,7 +57,7 @@ FINCA = dict(
              con="Anfitrión con solo 8 meses y 2 reseñas, aún sin calificación pública. Mayor incertidumbre.",
              host="Anfitrión: Nicolas · 8 meses en Airbnb",
              url=None, buscar="https://www.airbnb.com/s/Dapa--Colombia/homes?query=Green%20Jay%20Dapa"),
-        dict(slug="saladito-meralva", rank="Mejor nota, pocas reseñas",
+        dict(slug="saladito-meralva", corto="Meralva", rank="Mejor nota, pocas reseñas",
              nombre="Cali Saladito descanso 10 pax jacuzzi Meralva", lugar="Chalet en El Saladito, Cali",
              precio=2058563, antes=None, cap=10, hab=5, camas=10, banos="4,5", nota="5,0", resenas=3,
              tags=[("Jacuzzi", ""), ("Bosque de niebla", ""), ("Cancelación gratuita", "")],
@@ -65,7 +65,7 @@ FINCA = dict(
              con="No tiene piscina, solo jacuzzi. El Saladito es zona de montaña, más fría.",
              host="Anfitriona: Maria · 8 años en Airbnb",
              url="https://www.airbnb.com/rooms/28667828"),
-        dict(slug="dagua-km26", rank="Descuento vigente",
+        dict(slug="dagua-km26", corto="Dagua km 26", rank="Descuento vigente",
              nombre="Casa de campo con piscina y sauna km 26 vía al mar", lugar="Cabaña en Dagua",
              precio=2070000, antes=2290000, cap=10, hab=4, camas=10, banos="3", nota="4,8", resenas=5,
              tags=[("Piscina", ""), ("Sauna", ""), ("Terraza", ""), ("Cancelación gratuita", "")],
@@ -73,7 +73,7 @@ FINCA = dict(
              con="Solo 3 baños para 9. Queda en la vía al mar, a unos 40 minutos de Cali.",
              host="Anfitrión: Ivan Dario · 2 años en Airbnb",
              url="https://www.airbnb.com/rooms/1262351601757843663"),
-        dict(slug="finca-el-jardin", rank="Más cerca de la ciudad",
+        dict(slug="finca-el-jardin", corto="El Jardín Pance", rank="Más cerca de la ciudad",
              nombre="Finca El Jardín Pance-Cali", lugar="Casa de campo en La Voragine, Pance",
              precio=2422959, antes=None, cap=10, hab=3, camas=10, banos="3", nota="4,67", resenas=3,
              tags=[("Piscina", ""), ("Brasero", ""), ("Parrilla", ""), ("Cafetera", ""), ("Cancelación gratuita", "")],
@@ -81,7 +81,7 @@ FINCA = dict(
              con="Solo 3 habitaciones y 3 baños para 9. Más cara que las cuatro anteriores.",
              host="Anfitriona: Vicky · 2 años en Airbnb",
              url="https://www.airbnb.com/rooms/1243578139140209598"),
-        dict(slug="finca-recreo-dapa", rank="Mejor calificación",
+        dict(slug="finca-recreo-dapa", corto="Finca Dapa", rank="Mejor calificación",
              nombre="Finca de recreo Dapa Cali jacuzzi 4 habitaciones", lugar="Casa de campo en Dapa, Yumbo",
              precio=3547177, antes=None, cap=11, hab=4, camas=8, banos="3", nota="4,92", resenas=24,
              tags=[("Favorito entre huéspedes", "fav"), ("Jacuzzi", ""), ("Cocina al aire libre", ""), ("Brasero", ""), ("Parrilla", ""), ("Cancelación gratuita", "")],
@@ -123,9 +123,9 @@ def card(i, it, leg):
               {was}
               <span class="total">{cop(it["precio"])}</span>
               <span class="night">{cop(it["precio"] / leg["noches"])} por noche</span>
-              <span class="pp">{cop(it["precio"] / PERSONAS)} por persona</span>
             </div>
           </div>
+          <p class="each"><span>Cada uno paga</span><strong>{cop(it["precio"] / PERSONAS)}</strong><small>entre {PERSONAS}, por {leg["noches"]} noches</small></p>
           <ul class="facts">
             <li>{it["cap"]} huéspedes</li><li>{it["hab"]} habitaciones</li><li>{it["camas"]} camas</li><li>{it["banos"]} baños</li>
             <li class="rating">{nota}</li>
@@ -155,13 +155,13 @@ def leg(l):
 CSS = """
     :root {
       --bg: #f7f7f5; --card: #ffffff; --fg: #1c1c1c; --muted: #6b6b6b; --line: #e5e5e2;
-      --accent: #2563eb; --accent-fg: #ffffff;
+      --accent: #2563eb; --accent-fg: #ffffff; --accent-bg: #eff4ff;
       --good: #15803d; --good-bg: #ecfdf3; --warn: #b45309; --warn-bg: #fff7ed; --tag-bg: #f1f1ef;
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #121212; --card: #1c1c1c; --fg: #f0f0f0; --muted: #9a9a9a; --line: #2c2c2c;
-        --accent: #60a5fa; --accent-fg: #0b1220;
+        --accent: #60a5fa; --accent-fg: #0b1220; --accent-bg: #16213a;
         --good: #4ade80; --good-bg: #14291b; --warn: #fbbf24; --warn-bg: #2b2210; --tag-bg: #262626;
       }
     }
@@ -192,7 +192,20 @@ CSS = """
     .price .total { font-weight: 700; font-size: 1.1rem; display: block; }
     .price .was { color: var(--muted); text-decoration: line-through; font-size: 0.85rem; display: block; }
     .price .night { color: var(--muted); font-size: 0.8rem; display: block; }
-    .price .pp { color: var(--accent); font-size: 0.85rem; font-weight: 600; display: block; margin-top: 2px; }
+    .each { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin: 12px 0 0;
+      padding: 10px 12px; border-radius: 10px; background: var(--accent-bg); }
+    .each span { color: var(--muted); font-size: 0.85rem; }
+    .each strong { color: var(--accent); font-size: 1.25rem; }
+    .each small { color: var(--muted); font-size: 0.8rem; margin-left: auto; }
+    .tablewrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+    table.combos { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+    .combos th, .combos td { padding: 10px 8px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    .combos th[scope="row"], .combos thead th:first-child { text-align: left; font-weight: 500;
+      white-space: normal; color: var(--fg); }
+    .combos thead th { font-size: 0.8rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }
+    .combos tbody tr:last-child th, .combos tbody tr:last-child td { border-bottom: 0; }
+    .combos td { font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+    @media (max-width: 420px) { table.combos { font-size: 0.8rem; } .combos th, .combos td { padding: 9px 5px; } .combos thead th { font-size: 0.7rem; } }
     .facts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 12px 0 10px; padding: 0; list-style: none; font-size: 0.95rem; }
     .facts li::before { content: "· "; color: var(--muted); }
     .facts li:first-child::before { content: ""; }
@@ -214,9 +227,29 @@ CSS = """
     @media (max-width: 480px) {
       .summary { grid-template-columns: 1fr 1fr; }
       .top { flex-direction: column; }
+      .each small { margin-left: 0; width: 100%; }
       .price { text-align: left; }
     }
 """
+
+def combos():
+    cols = "".join(f'<th scope="col">{escape(c["corto"])}</th>' for c in CIUDAD["items"])
+    rows = ""
+    for f in FINCA["items"]:
+        cells = "".join(f'<td>{cop((f["precio"] + c["precio"]) / PERSONAS)[1:]}</td>' for c in CIUDAD["items"])
+        rows += f'<tr><th scope="row">{escape(f["corto"])}</th>{cells}</tr>'
+    return f'''
+    <section class="leg" aria-labelledby="total">
+      <h2 class="leg-title" id="total">Cuánto paga cada uno en total</h2>
+      <p class="leg-sub">Ciudad más finca, 6 noches, dividido entre {PERSONAS}. En pesos colombianos. Filas: finca. Columnas: ciudad.</p>
+      <div class="tablewrap">
+        <table class="combos">
+          <thead><tr><th scope="col">Finca / Ciudad</th>{cols}</tr></thead>
+          <tbody>{rows}</tbody>
+        </table>
+      </div>
+    </section>'''
+
 
 HTML = f'''<!DOCTYPE html>
 <html lang="es">
@@ -236,6 +269,7 @@ HTML = f'''<!DOCTYPE html>
     </header>
 {leg(CIUDAD)}
 {leg(FINCA)}
+{combos()}
     <footer>
       <a href="https://github.com/mayckths/cali">Editar en GitHub</a>
     </footer>
