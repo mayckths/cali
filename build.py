@@ -17,7 +17,7 @@ CIUDAD = dict(
              pro="La más barata de la ciudad, en Granada, la zona de restaurantes y rumba. Superanfitriona con 8 años.",
              con="Solo 5 camas para 9 personas: al menos 4 tendrían que compartir cama. 2,5 baños para todos.",
              host="Anfitriona: Samilis · Superanfitriona · 8 años en Airbnb",
-             url=None, buscar="https://www.airbnb.com/s/Cali--Colombia/homes?query=Casa%20en%20Granada%20cerca%20a%20dining%20nightlife"),
+             url="https://www.airbnb.com/rooms/1678538745581343486"),
         dict(slug="casa-alba", corto="Casa Alba", rank="Más habitaciones y baños",
              nombre="Casa Alba - San Antonio", lugar="Casa en San Antonio, Cali",
              precio=4197491, antes=None, cap=12, hab=5, camas=6, banos="5", nota="4,8", resenas=5,
