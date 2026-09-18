@@ -225,9 +225,7 @@ CSS = """
       --bg: #f7f7f5; --card: #ffffff; --fg: #1c1c1c; --muted: #6b6b6b; --line: #e5e5e2;
       --accent: #2563eb; --accent-fg: #ffffff; --accent-bg: #eff4ff;
       --good: #15803d; --good-bg: #ecfdf3; --warn: #b45309; --warn-bg: #fff7ed; --tag-bg: #f1f1ef;
-      --vuelos: #2563eb; --vuelos-bg: #e8effe;
-      --ciudad: #c2410c; --ciudad-bg: #fff1e8;
-      --finca: #15803d; --finca-bg: #e9f8ee;
+
     }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--bg); color: var(--fg);
@@ -247,21 +245,14 @@ CSS = """
     .total-sub { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; }
     .chips { display: flex; flex-wrap: wrap; gap: 6px; }
     .chip { background: var(--tag-bg); color: var(--fg); border-radius: 999px; padding: 4px 10px; font-size: 0.8rem; font-weight: 500; white-space: nowrap; }
-    .chip.c-vuelos { background: var(--vuelos-bg); color: var(--vuelos); font-weight: 600; }
-    .chip.c-ciudad { background: var(--ciudad-bg); color: var(--ciudad); font-weight: 600; }
-    .chip.c-finca { background: var(--finca-bg); color: var(--finca); font-weight: 600; }
-    .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex: none; }
-    .dot.c-vuelos { background: var(--vuelos); }
-    .dot.c-ciudad { background: var(--ciudad); }
-    .dot.c-finca { background: var(--finca); }
+    .chip.c-vuelos, .chip.c-ciudad, .chip.c-finca { background: var(--accent-bg); color: var(--accent); font-weight: 600; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex: none; background: var(--accent); }
     .leg-head { display: flex; align-items: center; gap: 10px; }
     .note { font-size: 0.85rem; color: var(--muted); margin: 12px 0 0; }
     section.leg, details.leg { margin-top: 24px; }
     details.leg { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 0 16px; }
     details.leg > summary { list-style: none; cursor: pointer; padding: 16px 0; display: flex; flex-direction: column; gap: 10px; position: relative; }
-    details#vuelos { border-left: 4px solid var(--vuelos); }
-    details#ciudad { border-left: 4px solid var(--ciudad); }
-    details#finca { border-left: 4px solid var(--finca); }
+    details.leg { border-left: 4px solid var(--accent); }
     details.leg > summary::-webkit-details-marker { display: none; }
     details.leg > summary::after { content: "+"; position: absolute; right: 0; top: 14px; font-size: 1.6rem; line-height: 1; color: var(--muted); }
     details.leg[open] > summary::after { content: "–"; }
@@ -350,7 +341,7 @@ def rango():
     t_max = VUELO_MAX + c_max + f_max
     return f'''
     <section class="total" aria-label="Total por persona">
-      <span class="total-label">Total por persona, todo incluido</span>
+      <span class="total-label">Total por persona, vuelos y estadía</span>
       <strong class="total-range">{cop(t_min)} a {cop(t_max)}</strong>
       <span class="total-sub">Vuelo ida y vuelta, {CIUDAD["noches"]} noches en la ciudad y {FINCA["noches"]} en finca, dividido entre {PERSONAS}.</span>
       <div class="chips">
