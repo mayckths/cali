@@ -3,63 +3,313 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cali</title>
+  <title>Cali, enero 2027</title>
+  <meta name="description" content="Comparación de alojamientos en Airbnb para el viaje a Cali del 1 al 3 de enero.">
   <style>
     :root {
       --bg: #f7f7f5;
+      --card: #ffffff;
       --fg: #1c1c1c;
       --muted: #6b6b6b;
+      --line: #e5e5e2;
       --accent: #2563eb;
+      --good: #15803d;
+      --good-bg: #ecfdf3;
+      --warn: #b45309;
+      --warn-bg: #fff7ed;
+      --tag-bg: #f1f1ef;
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #121212;
+        --card: #1c1c1c;
         --fg: #f0f0f0;
         --muted: #9a9a9a;
+        --line: #2c2c2c;
         --accent: #60a5fa;
+        --good: #4ade80;
+        --good-bg: #14291b;
+        --warn: #fbbf24;
+        --warn-bg: #2b2210;
+        --tag-bg: #262626;
       }
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       background: var(--bg);
       color: var(--fg);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      padding: 16px;
+      line-height: 1.5;
     }
-    main {
-      max-width: 560px;
-      width: 100%;
-      text-align: center;
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 16px 64px;
     }
-    h1 {
-      font-size: clamp(2rem, 8vw, 3.5rem);
-      margin: 0 0 0.5rem;
+    header h1 {
+      font-size: clamp(1.8rem, 6vw, 2.6rem);
+      margin: 0 0 4px;
       letter-spacing: -0.02em;
     }
-    p {
+    header p {
+      margin: 0;
       color: var(--muted);
-      font-size: 1.1rem;
-      line-height: 1.5;
-      margin: 0 0 1.5rem;
     }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 24px 0 8px;
     }
-    a:hover { text-decoration: underline; }
+    .summary div {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .summary span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .summary strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-top: 2px;
+    }
+    .note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: 0 0 24px;
+    }
+    ol.cards {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .rank {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    h2 {
+      font-size: 1.15rem;
+      margin: 2px 0 2px;
+      line-height: 1.3;
+    }
+    .place { color: var(--muted); font-size: 0.95rem; margin: 0; }
+    .price { text-align: right; white-space: nowrap; }
+    .price .total { font-weight: 700; font-size: 1.1rem; display: block; }
+    .price .was {
+      color: var(--muted);
+      text-decoration: line-through;
+      font-size: 0.85rem;
+      display: block;
+    }
+    .price .night { color: var(--muted); font-size: 0.8rem; display: block; }
+    .facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      margin: 12px 0 10px;
+      padding: 0;
+      list-style: none;
+      font-size: 0.95rem;
+    }
+    .facts li::before { content: "· "; color: var(--muted); }
+    .facts li:first-child::before { content: ""; }
+    .rating { font-weight: 600; }
+    .rating .n { color: var(--muted); font-weight: 400; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+    .tag {
+      background: var(--tag-bg);
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 0.8rem;
+    }
+    .pro, .con {
+      margin: 0;
+      font-size: 0.9rem;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+    .pro { background: var(--good-bg); color: var(--good); }
+    .con { background: var(--warn-bg); color: var(--warn); margin-top: 6px; }
+    .host { color: var(--muted); font-size: 0.85rem; margin: 12px 0 0; }
+    footer {
+      margin-top: 32px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    @media (max-width: 480px) {
+      .summary { grid-template-columns: 1fr 1fr; }
+      .top { flex-direction: column; }
+      .price { text-align: left; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Cali</h1>
-    <p>Este sitio está publicado con GitHub Pages. Edita <code>index.html</code> para empezar.</p>
-    <a href="https://github.com/mayckths/cali">Ver el repositorio en GitHub</a>
-  </main>
+  <div class="wrap">
+    <header>
+      <h1>Cali, 1 al 3 de enero</h1>
+      <p>Cinco opciones en Airbnb para 2 noches, ordenadas por precio. Todas con cancelación gratuita y sin pago hoy.</p>
+    </header>
+
+    <section class="summary" aria-label="Resumen">
+      <div><span>Más barata</span><strong>Villa Campestre</strong></div>
+      <div><span>Mejor calificada</span><strong>Saladito Meralva</strong></div>
+      <div><span>Más capacidad</span><strong>Green Jay Dapa</strong></div>
+    </section>
+    <p class="note">Precios en COP tal como aparecían en Airbnb el 18 de septiembre de 2026. Pueden cambiar.</p>
+
+    <ol class="cards">
+
+      <li class="card">
+        <div class="top">
+          <div>
+            <div class="rank">#1 · Precio más bajo</div>
+            <h2>Espectacular Villa Campestre</h2>
+            <p class="place">Villa en Jamundí</p>
+          </div>
+          <div class="price">
+            <span class="total">$1.982.098</span>
+            <span class="night">$991.049 por noche</span>
+          </div>
+        </div>
+        <ul class="facts">
+          <li>13 huéspedes</li><li>4 habitaciones</li><li>7 camas</li><li>4,5 baños</li>
+          <li class="rating">★ 4,58 <span class="n">(12 reseñas)</span></li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Piscina</span><span class="tag">Jacuzzi</span><span class="tag">Llegada autónoma</span>
+        </div>
+        <p class="pro">La que más reseñas tiene y la más barata. Capacidad para 13.</p>
+        <p class="con">Solo 7 camas para 13 personas, y la calificación es la segunda más baja.</p>
+        <p class="host">Anfitriona: Yamile · 8 años en Airbnb</p>
+      </li>
+
+      <li class="card">
+        <div class="top">
+          <div>
+            <div class="rank">#2 · Descuento vigente</div>
+            <h2>Green Jay Dapa</h2>
+            <p class="place">Alojamiento en Dapa</p>
+          </div>
+          <div class="price">
+            <span class="was">$2.530.000</span>
+            <span class="total">$2.024.000</span>
+            <span class="night">$1.012.000 por noche</span>
+          </div>
+        </div>
+        <ul class="facts">
+          <li>15 huéspedes</li><li>5 habitaciones</li><li>14 camas</li><li>6 baños</li>
+          <li class="rating">★ Sin calificación <span class="n">(2 reseñas)</span></li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Piscina</span><span class="tag">Jacuzzi</span><span class="tag">Brasero</span><span class="tag">Parrilla</span><span class="tag">Cena al aire libre</span>
+        </div>
+        <p class="pro">La de mayor capacidad: 15 personas, 14 camas y 6 baños. Clima fresco en Dapa.</p>
+        <p class="con">Anfitrión con solo 8 meses y 2 reseñas, aún sin calificación pública. Mayor incertidumbre.</p>
+        <p class="host">Anfitrión: Nicolas · 8 meses en Airbnb</p>
+      </li>
+
+      <li class="card">
+        <div class="top">
+          <div>
+            <div class="rank">#3 · Mejor calificación</div>
+            <h2>Cali Saladito descanso 10 pax jacuzzi Meralva</h2>
+            <p class="place">Alojamiento en Cali (El Saladito)</p>
+          </div>
+          <div class="price">
+            <span class="total">$2.058.563</span>
+            <span class="night">$1.029.282 por noche</span>
+          </div>
+        </div>
+        <ul class="facts">
+          <li>10 huéspedes</li><li>5 habitaciones</li><li>10 camas</li><li>4,5 baños</li>
+          <li class="rating">★ 5,0 <span class="n">(3 reseñas)</span></li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Jacuzzi</span>
+        </div>
+        <p class="pro">Calificación perfecta y anfitriona con 8 años de experiencia. 5 habitaciones para 10 personas.</p>
+        <p class="con">No menciona piscina, solo jacuzzi. El Saladito es zona de montaña, más fría.</p>
+        <p class="host">Anfitriona: Maria · 8 años en Airbnb</p>
+      </li>
+
+      <li class="card">
+        <div class="top">
+          <div>
+            <div class="rank">#4 · Descuento vigente</div>
+            <h2>Casa de campo con piscina y sauna km 26 vía al mar</h2>
+            <p class="place">Cabaña en Dagua</p>
+          </div>
+          <div class="price">
+            <span class="was">$2.290.000</span>
+            <span class="total">$2.070.000</span>
+            <span class="night">$1.035.000 por noche</span>
+          </div>
+        </div>
+        <ul class="facts">
+          <li>10 huéspedes</li><li>4 habitaciones</li><li>10 camas</li><li>3 baños</li>
+          <li class="rating">★ 4,8 <span class="n">(5 reseñas)</span></li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Piscina</span><span class="tag">Sauna</span><span class="tag">Terraza</span><span class="tag">Cena al aire libre</span>
+        </div>
+        <p class="pro">Buena calificación, piscina con vista y sauna. Precio con descuento.</p>
+        <p class="con">Solo 3 baños para 10 personas. Queda en la vía al mar, a unos 40 minutos de Cali.</p>
+        <p class="host">Anfitrión: Ivan Dario · 2 años en Airbnb</p>
+      </li>
+
+      <li class="card">
+        <div class="top">
+          <div>
+            <div class="rank">#5 · Más cerca de Cali</div>
+            <h2>Finca El Jardín Pance-Cali</h2>
+            <p class="place">Casa de campo en La Voragine, Pance</p>
+          </div>
+          <div class="price">
+            <span class="total">$2.422.959</span>
+            <span class="night">$1.211.480 por noche</span>
+          </div>
+        </div>
+        <ul class="facts">
+          <li>10 huéspedes</li><li>3 habitaciones</li><li>10 camas</li><li>3 baños</li>
+          <li class="rating">★ 4,67 <span class="n">(3 reseñas)</span></li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Piscina</span><span class="tag">Brasero</span><span class="tag">Parrilla</span><span class="tag">Cafetera</span><span class="tag">Cena al aire libre</span>
+        </div>
+        <p class="pro">Pance es la zona más cercana a Cali de las cinco, con piscina grande y zona de parrilla.</p>
+        <p class="con">La más cara, con solo 3 habitaciones y 3 baños para 10 personas.</p>
+        <p class="host">Anfitriona: Vicky · 2 años en Airbnb</p>
+      </li>
+
+    </ol>
+
+    <footer>
+      <a href="https://github.com/mayckths/cali">Editar en GitHub</a>
+    </footer>
+  </div>
 </body>
 </html>
