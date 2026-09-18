@@ -19,7 +19,7 @@ VUELO_MIN = min(v["precio"] for v in VUELOS["items"])
 VUELO_MAX = max(v["precio"] for v in VUELOS["items"])
 
 CIUDAD = dict(
-    id="ciudad", titulo="En la ciudad", sub="28 de diciembre al 1 de enero · 4 noches",
+    id="ciudad", titulo="En la ciudad", fechas="28 dic a 1 ene",
     noches=4, check_in="2026-12-28", check_out="2027-01-01",
     resumen=[("Más barata", "Casa en Granada"), ("Más reseñas", "Luxury 502"), ("Más camas y baños", "Casa Alba")],
     items=[
@@ -62,7 +62,7 @@ CIUDAD = dict(
     ])
 
 FINCA = dict(
-    id="finca", titulo="Finca", sub="1 al 3 de enero · 2 noches",
+    id="finca", titulo="Finca", fechas="1 a 3 ene",
     noches=2, check_in="2027-01-01", check_out="2027-01-03",
     resumen=[("Más barata", "Villa Campestre"), ("Mejor calificada", "Finca de recreo Dapa"), ("Más camas", "Green Jay Dapa")],
     items=[
@@ -143,11 +143,14 @@ def vuelos():
       </li>'''
     return f'''
     <details class="leg" id="vuelos">
-      <summary><span class="leg-title">Vuelos</span><span class="leg-sub">{escape(VUELOS["ruta"])} · {cop(VUELO_MIN)} a {cop(VUELO_MAX)} por persona</span></summary>
-      <div class="summary two">
-        <div><span>Rango por persona</span><strong>{cop(VUELO_MIN)} a {cop(VUELO_MAX)}</strong></div>
-        <div><span>Aerolíneas</span><strong>{", ".join(v["aerolinea"] for v in VUELOS["items"])}</strong></div>
-      </div>
+      <summary>
+        <span class="leg-head"><span class="dot c-vuelos"></span><span class="leg-title">Vuelos</span></span>
+        <span class="chips">
+          <span class="chip c-vuelos">{cop(VUELO_MIN)} a {cop(VUELO_MAX)} por persona</span>
+          <span class="chip">BOG → CLO</span>
+          <span class="chip">{len(VUELOS["items"])} aerolíneas</span>
+        </span>
+      </summary>
       <ol class="flights">{cards}
       </ol>
       <p class="note">{escape(VUELOS["sub"])}</p>
@@ -202,7 +205,15 @@ def leg(l):
     cards = "".join(card(i + 1, it, l) for i, it in enumerate(l["items"]))
     return f'''
     <details class="leg" id="{l["id"]}">
-      <summary><span class="leg-title">{escape(l["titulo"])}</span><span class="leg-sub">{escape(l["sub"])} · {len(l["items"])} opciones</span></summary>
+      <summary>
+        <span class="leg-head"><span class="dot c-{l["id"]}"></span><span class="leg-title">{escape(l["titulo"])}</span></span>
+        <span class="chips">
+          <span class="chip c-{l["id"]}">Desde {cop(min(i["precio"] for i in l["items"]) / PERSONAS)} por persona</span>
+          <span class="chip">{escape(l["fechas"])}</span>
+          <span class="chip">{l["noches"]} noches</span>
+          <span class="chip">{len(l["items"])} opciones</span>
+        </span>
+      </summary>
       <div class="summary">{res}</div>
       <ol class="cards">{cards}
       </ol>
@@ -214,29 +225,55 @@ CSS = """
       --bg: #f7f7f5; --card: #ffffff; --fg: #1c1c1c; --muted: #6b6b6b; --line: #e5e5e2;
       --accent: #2563eb; --accent-fg: #ffffff; --accent-bg: #eff4ff;
       --good: #15803d; --good-bg: #ecfdf3; --warn: #b45309; --warn-bg: #fff7ed; --tag-bg: #f1f1ef;
+      --vuelos: #2563eb; --vuelos-bg: #e8effe;
+      --ciudad: #c2410c; --ciudad-bg: #fff1e8;
+      --finca: #15803d; --finca-bg: #e9f8ee;
     }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--bg); color: var(--fg);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.5; }
-    .wrap { max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; }
-    header h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); margin: 0 0 4px; letter-spacing: -0.02em; }
-    header p { margin: 0; color: var(--muted); }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 16px 16px 64px; }
+    .hero { position: relative; border-radius: 20px; overflow: hidden; height: clamp(260px, 70vw, 380px); background: #1c2a3a; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-text { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0) 100%); color: #fff; }
+    .hero-kicker { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.9; }
+    .hero h1 { font-size: clamp(2.4rem, 10vw, 4rem); margin: 0; line-height: 1; letter-spacing: -0.03em; }
+    .hero p { margin: 4px 0 0; font-size: 1.05rem; opacity: 0.95; }
+    .intro { font-size: 0.9rem; color: var(--muted); margin: 16px 0 0; }
+    .total { margin-top: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
+    .total-label { display: block; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .total-range { display: block; font-size: clamp(1.4rem, 6vw, 1.9rem); letter-spacing: -0.02em; margin: 2px 0 4px; }
+    .total-sub { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { background: var(--tag-bg); color: var(--fg); border-radius: 999px; padding: 4px 10px; font-size: 0.8rem; font-weight: 500; white-space: nowrap; }
+    .chip.c-vuelos { background: var(--vuelos-bg); color: var(--vuelos); font-weight: 600; }
+    .chip.c-ciudad { background: var(--ciudad-bg); color: var(--ciudad); font-weight: 600; }
+    .chip.c-finca { background: var(--finca-bg); color: var(--finca); font-weight: 600; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex: none; }
+    .dot.c-vuelos { background: var(--vuelos); }
+    .dot.c-ciudad { background: var(--ciudad); }
+    .dot.c-finca { background: var(--finca); }
+    .leg-head { display: flex; align-items: center; gap: 10px; }
     .note { font-size: 0.85rem; color: var(--muted); margin: 12px 0 0; }
     section.leg, details.leg { margin-top: 24px; }
     details.leg { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 0 16px; }
-    details.leg > summary { list-style: none; cursor: pointer; padding: 16px 0; display: flex; flex-direction: column; gap: 2px; position: relative; }
+    details.leg > summary { list-style: none; cursor: pointer; padding: 16px 0; display: flex; flex-direction: column; gap: 10px; position: relative; }
+    details#vuelos { border-left: 4px solid var(--vuelos); }
+    details#ciudad { border-left: 4px solid var(--ciudad); }
+    details#finca { border-left: 4px solid var(--finca); }
     details.leg > summary::-webkit-details-marker { display: none; }
     details.leg > summary::after { content: "+"; position: absolute; right: 0; top: 14px; font-size: 1.6rem; line-height: 1; color: var(--muted); }
     details.leg[open] > summary::after { content: "–"; }
-    details.leg[open] > summary { border-bottom: 1px solid var(--line); margin-bottom: 4px; }
+    details.leg[open] > summary { border-bottom: 1px solid var(--line); margin-bottom: 14px; }
     details.leg > *:last-child { padding-bottom: 16px; }
     .leg-title { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.01em; display: block; padding-right: 32px; }
-    .leg-sub { color: var(--muted); margin: 0 0 8px; display: block; font-size: 0.95rem; }
+    .leg-sub { color: var(--muted); margin: 8px 0 8px; display: block; font-size: 0.9rem; }
     details.leg .cards { margin-bottom: 4px; }
     details.leg .card { background: var(--bg); }
     details.leg .flight { background: var(--bg); }
     details.leg .summary div { background: var(--bg); }
-    .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0 16px; }
+    .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0 0 16px; }
     .summary div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
     .summary span { display: block; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
     .summary strong { display: block; font-size: 1.05rem; margin-top: 2px; }
@@ -258,15 +295,7 @@ CSS = """
     .each span { color: var(--muted); font-size: 0.85rem; }
     .each strong { color: var(--accent); font-size: 1.25rem; }
     .each small { color: var(--muted); font-size: 0.8rem; margin-left: auto; }
-    .tablewrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
-    table.combos { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
-    .combos th, .combos td { padding: 10px 8px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
-    .combos th[scope="row"], .combos thead th:first-child { text-align: left; font-weight: 500;
       white-space: normal; color: var(--fg); }
-    .combos thead th { font-size: 0.8rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }
-    .combos tbody tr:last-child th, .combos tbody tr:last-child td { border-bottom: 0; }
-    .combos td { font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
-    @media (max-width: 420px) { table.combos { font-size: 0.8rem; } .combos th, .combos td { padding: 9px 5px; } .combos thead th { font-size: 0.7rem; } }
     .facts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 12px 0 10px; padding: 0; list-style: none; font-size: 0.95rem; }
     .facts li::before { content: "· "; color: var(--muted); }
     .facts li:first-child::before { content: ""; }
@@ -312,23 +341,23 @@ CSS = """
     }
 """
 
-def combos():
-    cols = "".join(f'<th scope="col">{escape(c["corto"])}</th>' for c in CIUDAD["items"])
-    rows = ""
-    for f in FINCA["items"]:
-        cells = "".join(f'<td>{cop((f["precio"] + c["precio"]) / PERSONAS)[1:]}</td>' for c in CIUDAD["items"])
-        rows += f'<tr><th scope="row">{escape(f["corto"])}</th>{cells}</tr>'
+def rango():
+    c_min = min(i["precio"] for i in CIUDAD["items"]) / PERSONAS
+    c_max = max(i["precio"] for i in CIUDAD["items"]) / PERSONAS
+    f_min = min(i["precio"] for i in FINCA["items"]) / PERSONAS
+    f_max = max(i["precio"] for i in FINCA["items"]) / PERSONAS
+    t_min = VUELO_MIN + c_min + f_min
+    t_max = VUELO_MAX + c_max + f_max
     return f'''
-    <section class="leg" aria-labelledby="total">
-      <h2 class="leg-title" id="total">Cuánto paga cada uno en total</h2>
-      <p class="leg-sub">Ciudad más finca, 6 noches, dividido entre {PERSONAS}. En pesos colombianos, sin vuelo. Filas: finca. Columnas: ciudad.</p>
-      <div class="tablewrap">
-        <table class="combos">
-          <thead><tr><th scope="col">Finca / Ciudad</th>{cols}</tr></thead>
-          <tbody>{rows}</tbody>
-        </table>
+    <section class="total" aria-label="Total por persona">
+      <span class="total-label">Total por persona, todo incluido</span>
+      <strong class="total-range">{cop(t_min)} a {cop(t_max)}</strong>
+      <span class="total-sub">Vuelo ida y vuelta, {CIUDAD["noches"]} noches en la ciudad y {FINCA["noches"]} en finca, dividido entre {PERSONAS}.</span>
+      <div class="chips">
+        <span class="chip c-vuelos">Vuelo {cop(VUELO_MIN)} a {cop(VUELO_MAX)}</span>
+        <span class="chip c-ciudad">Ciudad {cop(c_min)} a {cop(c_max)}</span>
+        <span class="chip c-finca">Finca {cop(f_min)} a {cop(f_max)}</span>
       </div>
-      <p class="note">Con el vuelo, suma entre {cop(VUELO_MIN)} y {cop(VUELO_MAX)} a cada casilla. La combinación más barata, Granada más Villa Campestre, queda entre {cop((CIUDAD["items"][0]["precio"] + FINCA["items"][0]["precio"]) / PERSONAS + VUELO_MIN)} y {cop((CIUDAD["items"][0]["precio"] + FINCA["items"][0]["precio"]) / PERSONAS + VUELO_MAX)} por persona.</p>
     </section>'''
 
 
@@ -344,15 +373,19 @@ HTML = f'''<!DOCTYPE html>
 </head>
 <body>
   <div class="wrap">
-    <header>
-      <h1>Cali, 28 de diciembre al 3 de enero</h1>
-      <p>Somos {PERSONAS}. Opciones en Airbnb para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy.</p>
-      <p class="note">Precios en COP tal como aparecían en Airbnb el {FECHA_PRECIOS}. Pueden cambiar. El precio por persona divide el total entre {PERSONAS}. Los botones abren Airbnb con las fechas y las {PERSONAS} personas ya puestas.</p>
+    <header class="hero">
+      <img src="img/cali.jpg" alt="Iglesia La Ermita y el centro de Cali" width="1200" height="653">
+      <div class="hero-text">
+        <span class="hero-kicker">Fin de año · {PERSONAS} personas</span>
+        <h1>Cali</h1>
+        <p>28 de diciembre al 3 de enero</p>
+      </div>
     </header>
+    <p class="intro">Opciones en Airbnb para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy. Precios en COP tal como aparecían el {FECHA_PRECIOS}; pueden cambiar. Los botones abren Airbnb con las fechas y las {PERSONAS} personas ya puestas.</p>
+{rango()}
 {vuelos()}
 {leg(CIUDAD)}
 {leg(FINCA)}
-{combos()}
     <footer>
       <a href="https://github.com/mayckths/cali">Editar en GitHub</a>
     </footer>
