@@ -183,10 +183,9 @@ def card(i, it, leg):
             <div class="price">
               {was}
               <span class="total">{cop(it["precio"])}</span>
-              <span class="night">{cop(it["precio"] / leg["noches"])} por noche</span>
             </div>
           </div>
-          <p class="each"><span>Cada uno paga</span><strong>{cop(it["precio"] / PERSONAS)}</strong><small>entre {PERSONAS}, por {leg["noches"]} noches</small></p>
+          <p class="each"><span>Cada uno paga</span><strong>{cop(it["precio"] / PERSONAS)}</strong></p>
           <ul class="facts">
             <li>{it["cap"]} huéspedes</li><li>{it["hab"]} habitaciones</li><li>{it["camas"]} camas</li><li>{it["banos"]} baños</li>
             <li class="rating">{nota}</li>
@@ -194,7 +193,6 @@ def card(i, it, leg):
           <div class="tags">{tags}</div>
           {barrio(it)}
           <p class="pro">{escape(it["pro"])}</p>
-          <p class="con">{escape(it["con"])}</p>
           {btn}
         </div>
       </li>'''
