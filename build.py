@@ -2,7 +2,7 @@
 """Genera index.html a partir de los datos de abajo. Ejecutar: python3 build.py"""
 from html import escape
 
-PERSONAS = 9
+PERSONAS = 8
 FECHA_PRECIOS = "18 de septiembre de 2026"
 
 VUELOS = dict(
@@ -28,7 +28,7 @@ CIUDAD = dict(
              precio=3769071, antes=4177299, cap=10, hab=3, camas=5, banos="2,5", nota="4,89", resenas=18,
              tags=[("Favorito entre huéspedes", "fav"), ("Superanfitriona", ""), ("Cancelación gratuita", "")],
              pro="La más barata de la ciudad, en Granada, la zona de restaurantes y rumba. Superanfitriona con 8 años.",
-             con="Solo 5 camas para 9 personas: al menos 4 tendrían que compartir cama. 2,5 baños para todos.",
+             con="Solo 5 camas para 8 personas: al menos 3 tendrían que compartir cama. 2,5 baños para todos.",
              host="Anfitriona: Samilis · Superanfitriona · 8 años en Airbnb",
              barrio=dict(nombre="Granada", texto=[
                  "Es la zona gastronómica de Cali: en pocas cuadras, sobre la Avenida 9N y sus alrededores, se concentran restaurantes, cafés, bares y boutiques. Es el barrio para salir a comer y a tomar algo sin coger taxi.",
@@ -39,8 +39,8 @@ CIUDAD = dict(
              nombre="Casa Alba - San Antonio", lugar="Casa en San Antonio, Cali",
              precio=4197491, antes=None, cap=12, hab=5, camas=6, banos="5", nota="4,8", resenas=5,
              tags=[("Aire acondicionado", ""), ("Barrio histórico", ""), ("Cancelación gratuita", "")],
-             pro="5 habitaciones y 5 baños, la mejor distribución para 9. San Antonio es el barrio más pintoresco y se camina a todo.",
-             con="Solo 5 reseñas. 6 camas para 9, así que 3 comparten.",
+             pro="5 habitaciones y 5 baños, la mejor distribución para 8. San Antonio es el barrio más pintoresco y se camina a todo.",
+             con="Solo 5 reseñas. 6 camas para 8, así que 3 comparten.",
              host="Anfitriona: Alba · 3 años en Airbnb",
              barrio=dict(nombre="San Antonio", texto=[
                  "Es el barrio colonial de Cali, en una loma con casas de colores, calles empinadas y la iglesia de San Antonio en la cima, con el mejor mirador de la ciudad para ver el atardecer.",
@@ -71,14 +71,14 @@ FINCA = dict(
              precio=1982098, antes=None, cap=13, hab=4, camas=7, banos="4,5", nota="4,58", resenas=12,
              tags=[("Piscina", ""), ("Jacuzzi", ""), ("Llegada autónoma", ""), ("Cancelación gratuita", "")],
              pro="La más barata y la que más reseñas tiene entre las fincas. Piscina grande y jacuzzi.",
-             con="7 camas para 9: dos comparten. La calificación es la más baja del grupo.",
+             con="7 camas para 8: dos comparten. La calificación es la más baja del grupo.",
              host="Anfitriona: Yamile · 8 años en Airbnb",
              url="https://www.airbnb.com/rooms/33601199"),
         dict(slug="green-jay-dapa", corto="Green Jay", rank="Descuento vigente",
              nombre="Green Jay Dapa", lugar="Alojamiento en Dapa",
              precio=2024000, antes=2530000, cap=15, hab=5, camas=14, banos="6", nota=None, resenas=2,
              tags=[("Piscina", ""), ("Jacuzzi", ""), ("Brasero", ""), ("Parrilla", ""), ("Cancelación gratuita", "")],
-             pro="Sobra espacio: 14 camas y 6 baños para 9 personas. Clima fresco en Dapa.",
+             pro="Sobra espacio: 14 camas y 6 baños para 8 personas. Clima fresco en Dapa.",
              con="Anfitrión con solo 8 meses y 2 reseñas, aún sin calificación pública. Mayor incertidumbre.",
              host="Anfitrión: Nicolas · 8 meses en Airbnb",
              url="https://www.airbnb.com/rooms/1511142141665799976"),
@@ -95,7 +95,7 @@ FINCA = dict(
              precio=2070000, antes=2290000, cap=10, hab=4, camas=10, banos="3", nota="4,8", resenas=5,
              tags=[("Piscina", ""), ("Sauna", ""), ("Terraza", ""), ("Cancelación gratuita", "")],
              pro="Buena calificación, piscina con vista, sauna y una cama por persona. Precio con descuento.",
-             con="Solo 3 baños para 9. Queda en la vía al mar, a unos 40 minutos de Cali.",
+             con="Solo 3 baños para 8. Queda en la vía al mar, a unos 40 minutos de Cali.",
              host="Anfitrión: Ivan Dario · 2 años en Airbnb",
              url="https://www.airbnb.com/rooms/1262351601757843663"),
         dict(slug="finca-el-jardin", corto="El Jardín Pance", rank="Más cerca de la ciudad",
@@ -103,7 +103,7 @@ FINCA = dict(
              precio=2422959, antes=None, cap=10, hab=3, camas=10, banos="3", nota="4,67", resenas=3,
              tags=[("Piscina", ""), ("Brasero", ""), ("Parrilla", ""), ("Cafetera", ""), ("Cancelación gratuita", "")],
              pro="Pance es la zona más cercana a Cali de las seis, con piscina grande y zona de parrilla.",
-             con="Solo 3 habitaciones y 3 baños para 9. Más cara que las cuatro anteriores.",
+             con="Solo 3 habitaciones y 3 baños para 8. Más cara que las cuatro anteriores.",
              host="Anfitriona: Vicky · 2 años en Airbnb",
              url="https://www.airbnb.com/rooms/1243578139140209598"),
         dict(slug="finca-recreo-dapa", corto="Finca Dapa", rank="Mejor calificación",
@@ -111,7 +111,7 @@ FINCA = dict(
              precio=3547177, antes=None, cap=11, hab=4, camas=8, banos="3", nota="4,92", resenas=24,
              tags=[("Favorito entre huéspedes", "fav"), ("Jacuzzi", ""), ("Cocina al aire libre", ""), ("Brasero", ""), ("Parrilla", ""), ("Cancelación gratuita", "")],
              pro="La finca más confiable: 4,92 con 24 reseñas y sello de favorito. Casa colonial muy cuidada.",
-             con="Cuesta un 75 % más que las demás fincas. No menciona piscina, solo jacuzzi. 8 camas para 9.",
+             con="Cuesta un 75 % más que las demás fincas. No menciona piscina, solo jacuzzi. 8 camas para 8, una por persona.",
              host="Anfitrión: Danny · 3 años en Airbnb",
              url="https://www.airbnb.com/rooms/897636893265667568"),
     ])
