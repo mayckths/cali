@@ -49,7 +49,7 @@ CIUDAD = dict(
 
 FINCA = dict(
     id="finca", titulo="Finca", fechas="1 a 3 ene",
-    aviso="Los precios de las fincas se vieron para el 1 al 3 de diciembre. Al abrir el anuncio, pon las fechas de enero para ver el valor real.",
+    aviso="Los precios de las fincas se vieron para el 1 al 3 de diciembre. El botón abre el anuncio con las fechas de enero para ver el valor real.",
     noches=2, check_in="2027-01-01", check_out="2027-01-03",
     resumen=[("Más barata", "Casa De Campo En Rozo"), ("Con piscina", "Rozo Casa campestre"), ("Más grande", "Finca Lujosa")],
     items=[
@@ -127,13 +127,15 @@ def card(i, it, leg):
         nota = '★ Aún sin reseñas'
     tags = "".join(f'<span class="tag {c}">{escape(t)}</span>' for t, c in it["tags"])
     if it.get("url"):
-        btn = f'<a class="btn" href="{it["url"]}" target="_blank" rel="noopener">Ver en Airbnb</a>'
+        sep = "&" if "?" in it["url"] else "?"
+        q = f'{sep}adults={PERSONAS}&check_in={leg["check_in"]}&check_out={leg["check_out"]}'
+        btn = f'<a class="btn" href="{it["url"]}{q}" target="_blank" rel="noopener">Ver en Airbnb</a>'
     else:
         btn = (f'<a class="btn ghost" href="{it["buscar"]}" target="_blank" rel="noopener">Buscar en Airbnb</a>'
                f'<p class="pend">Enlace exacto pendiente. Búsqueda por nombre mientras tanto.</p>')
     return f'''
       <li class="card" id="{it["slug"]}">
-        <a class="photo" href="{it.get("url") or it["buscar"]}" target="_blank" rel="noopener">
+        <a class="photo" href="{it["url"]}{q}" target="_blank" rel="noopener">
           <img src="img/{it["slug"]}.jpg" alt="Foto de {escape(it["nombre"])}" loading="lazy" width="900" height="429">
         </a>
         <div class="body">
@@ -333,7 +335,7 @@ HTML = f'''<!DOCTYPE html>
         <p>28 de diciembre al 3 de enero</p>
       </div>
     </header>
-    <p class="intro">Opciones en Airbnb para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy. Precios en COP tal como aparecían el {FECHA_PRECIOS}; pueden cambiar. Al abrir un anuncio en Airbnb, pon las fechas y las {PERSONAS} personas para ver el precio actualizado.</p>
+    <p class="intro">Opciones en Airbnb para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy. Precios en COP tal como aparecían el {FECHA_PRECIOS}; pueden cambiar. Los botones abren Airbnb con las fechas del tramo y las {PERSONAS} personas ya puestas.</p>
 {rango()}
 {vuelos()}
 {leg(CIUDAD)}
