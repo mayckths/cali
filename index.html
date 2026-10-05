@@ -25,7 +25,7 @@
     .hero h1 { font-size: clamp(2.4rem, 10vw, 4rem); margin: 0; line-height: 1; letter-spacing: -0.03em; }
     .hero p { margin: 4px 0 0; font-size: 1.05rem; opacity: 0.95; }
     .intro { font-size: 0.9rem; color: var(--muted); margin: 16px 0 0; }
-    .total { margin-top: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
+    .grand { margin-top: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
     .total-label { display: block; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
     .total-range { display: block; font-size: clamp(1.4rem, 6vw, 1.9rem); letter-spacing: -0.02em; margin: 2px 0 4px; }
     .total-sub { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; }
@@ -72,7 +72,6 @@
     .each span { color: var(--muted); font-size: 0.85rem; }
     .each strong { color: var(--accent); font-size: 1.25rem; }
     .each small { color: var(--muted); font-size: 0.8rem; margin-left: auto; }
-      white-space: normal; color: var(--fg); }
     .facts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 12px 0 10px; padding: 0; list-style: none; font-size: 0.95rem; }
     .facts li::before { content: "· "; color: var(--muted); }
     .facts li:first-child::before { content: ""; }
@@ -130,14 +129,14 @@
     </header>
     <p class="intro">Opciones en Airbnb para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy. Precios en COP tal como aparecían el 18 de septiembre de 2026; pueden cambiar. Los botones abren Airbnb con las fechas y las 8 personas ya puestas.</p>
 
-    <section class="total" aria-label="Total por persona">
+    <section class="grand" aria-label="Total por persona">
       <span class="total-label">Total por persona, vuelos y estadía</span>
-      <strong class="total-range">$1.085.321 a $1.601.783</strong>
+      <strong class="total-range">$1.078.639 a $1.458.386</strong>
       <span class="total-sub">Vuelo ida y vuelta, 4 noches en la ciudad y 2 en finca, dividido entre 8.</span>
       <div class="chips">
         <span class="chip c-vuelos">Vuelo $366.425 a $394.390</span>
-        <span class="chip c-ciudad">Ciudad $471.134 a $763.996</span>
-        <span class="chip c-finca">Finca $247.762 a $443.397</span>
+        <span class="chip c-ciudad">Ciudad $494.214 a $763.996</span>
+        <span class="chip c-finca">Finca $218.000 a $300.000</span>
       </div>
     </section>
 
@@ -183,66 +182,39 @@
       <summary>
         <span class="leg-head"><span class="dot c-ciudad"></span><span class="leg-title">En la ciudad</span></span>
         <span class="chips">
-          <span class="chip c-ciudad">Desde $471.134 por persona</span>
+          <span class="chip c-ciudad">Desde $494.214 por persona</span>
           <span class="chip">28 dic a 1 ene</span>
           <span class="chip">4 noches</span>
-          <span class="chip">3 opciones</span>
+          <span class="chip">2 opciones</span>
         </span>
       </summary>
-      <div class="summary"><div><span>Más barata</span><strong>Casa en Granada</strong></div><div><span>Más reseñas</span><strong>Luxury 502</strong></div><div><span>Más camas y baños</span><strong>Casa Alba</strong></div></div>
+      <div class="summary"><div><span>Más barata</span><strong>Posada ABBA</strong></div><div><span>Más reseñas</span><strong>Luxury 502</strong></div><div><span>Más baños</span><strong>Posada ABBA</strong></div></div>
       <ol class="cards">
-      <li class="card" id="casa-granada">
-        <a class="photo" href="https://www.airbnb.com/rooms/1678538745581343486" target="_blank" rel="noopener">
-          <img src="img/casa-granada.jpg" alt="Foto de Casa en Granada cerca a dining &amp; nightlife" loading="lazy" width="900" height="429">
+      <li class="card" id="posada-abba">
+        <a class="photo" href="https://www.airbnb.com/rooms/989271767589296963" target="_blank" rel="noopener">
+          <img src="img/posada-abba.jpg" alt="Foto de Posada Familiar ABBA. Casa al sur de Cali" loading="lazy" width="900" height="429">
         </a>
         <div class="body">
           <div class="top">
             <div>
-              <div class="rank">#1 · Precio más bajo · Descuento vigente</div>
-              <h3>Casa en Granada cerca a dining &amp; nightlife</h3>
-              <p class="place">Casa en el barrio Granada, Cali</p>
-            </div>
-            <div class="price">
-              <span class="was">$4.177.299</span>
-              <span class="total">$3.769.071</span>
-            </div>
-          </div>
-          <p class="each"><span>Cada uno paga</span><strong>$471.134</strong></p>
-          <ul class="facts">
-            <li>10 huéspedes</li><li>3 habitaciones</li><li>5 camas</li><li>2,5 baños</li>
-            <li class="rating">★ 4,89 <span class="n">(18 reseñas)</span></li>
-          </ul>
-          <div class="tags"><span class="tag fav">Favorito entre huéspedes</span><span class="tag ">Superanfitriona</span><span class="tag ">Cancelación gratuita</span></div>
-          <details class="barrio"><summary>Sobre el barrio: Granada</summary><p>Es la zona gastronómica de Cali: en pocas cuadras, sobre la Avenida 9N y sus alrededores, se concentran restaurantes, cafés, bares y boutiques. Es el barrio para salir a comer y a tomar algo sin coger taxi.</p><p>Queda al norte del centro, a unos 10 minutos a pie del Boulevard del Río y del barrio El Peñón, y a unos 10 minutos en carro del centro comercial Chipichape.</p><p>De noche hay mucho movimiento, sobre todo en fin de año. Es de las zonas más seguras para caminar, aunque conviene volver por las calles principales.</p></details>
-          <p class="pro">La más barata de la ciudad, en Granada, la zona de restaurantes y rumba. Superanfitriona con 8 años.</p>
-          <a class="btn" href="https://www.airbnb.com/rooms/1678538745581343486?check_in=2026-12-28&check_out=2027-01-01&adults=8" target="_blank" rel="noopener">Ver en Airbnb</a>
-        </div>
-      </li>
-      <li class="card" id="casa-alba">
-        <a class="photo" href="https://www.airbnb.com/rooms/1063628642244199346" target="_blank" rel="noopener">
-          <img src="img/casa-alba.jpg" alt="Foto de Casa Alba - San Antonio" loading="lazy" width="900" height="429">
-        </a>
-        <div class="body">
-          <div class="top">
-            <div>
-              <div class="rank">#2 · Más habitaciones y baños</div>
-              <h3>Casa Alba - San Antonio</h3>
-              <p class="place">Casa en San Antonio, Cali</p>
+              <div class="rank">#1 · Precio más bajo · Mejor calificación</div>
+              <h3>Posada Familiar ABBA. Casa al sur de Cali</h3>
+              <p class="place">Casa en el sur de Cali</p>
             </div>
             <div class="price">
               
-              <span class="total">$4.197.491</span>
+              <span class="total">$3.953.711</span>
             </div>
           </div>
-          <p class="each"><span>Cada uno paga</span><strong>$524.686</strong></p>
+          <p class="each"><span>Cada uno paga</span><strong>$494.214</strong></p>
           <ul class="facts">
-            <li>12 huéspedes</li><li>5 habitaciones</li><li>6 camas</li><li>5 baños</li>
-            <li class="rating">★ 4,8 <span class="n">(5 reseñas)</span></li>
+            <li>10 huéspedes</li><li>5 habitaciones</li><li>7 camas</li><li>4,5 baños</li>
+            <li class="rating">★ 5,0 <span class="n">(7 reseñas)</span></li>
           </ul>
-          <div class="tags"><span class="tag ">Aire acondicionado</span><span class="tag ">Barrio histórico</span><span class="tag ">Cancelación gratuita</span></div>
-          <details class="barrio"><summary>Sobre el barrio: San Antonio</summary><p>Es el barrio colonial de Cali, en una loma con casas de colores, calles empinadas y la iglesia de San Antonio en la cima, con el mejor mirador de la ciudad para ver el atardecer.</p><p>Tiene cafés, restaurantes pequeños, teatros y tiendas de artesanías. Bajando la loma se llega caminando al centro histórico, a la Plaza de Cayzedo y a La Ermita, y en 15 minutos a El Peñón. La Loma de la Cruz, con su mercado artesanal, queda al lado.</p><p>Es la zona más turística y con más ambiente bohemio. Las calles principales son tranquilas, pero de noche es mejor no alejarse hacia los bordes del barrio.</p></details>
-          <p class="pro">5 habitaciones y 5 baños, la mejor distribución para 8. San Antonio es el barrio más pintoresco y se camina a todo.</p>
-          <a class="btn" href="https://www.airbnb.com/rooms/1063628642244199346?check_in=2026-12-28&check_out=2027-01-01&adults=8" target="_blank" rel="noopener">Ver en Airbnb</a>
+          <div class="tags"><span class="tag fav">Favorito entre huéspedes</span><span class="tag ">Aire acondicionado</span><span class="tag ">Cancelación gratuita</span></div>
+          <details class="barrio"><summary>Sobre el barrio: Sur de Cali</summary><p>El anuncio la ubica en el sur de Cali, la zona residencial de la ciudad: barrios de casas y conjuntos, con supermercados, centros comerciales como Unicentro y Jardín Plaza, y clínicas cerca.</p><p>Es la parte de la ciudad más cercana a Pance y al río, y queda bien conectada por la Autopista Sur y la Avenida Cañasgordas. Para ir a comer o a rumbear a Granada o San Antonio hay que coger taxi, unos 25 o 30 minutos.</p><p>Es una zona tranquila y segura para un grupo con carro, a cambio de estar lejos del ambiente del centro.</p></details>
+          <p class="pro">Calificación perfecta con 7 reseñas y sello de favorito. 5 habitaciones y 4,5 baños para 8: casi un baño por habitación.</p>
+          <a class="btn" href="https://www.airbnb.com/rooms/989271767589296963?check_in=2026-12-28&check_out=2027-01-01&adults=8" target="_blank" rel="noopener">Ver en Airbnb</a>
         </div>
       </li>
       <li class="card" id="luxury-502">
@@ -252,7 +224,7 @@
         <div class="body">
           <div class="top">
             <div>
-              <div class="rank">#3 · Más reseñas · Descuento vigente</div>
+              <div class="rank">#2 · Más reseñas · Descuento vigente</div>
               <h3>Luxury apartamento en Cali 502</h3>
               <p class="place">Apartamento dúplex en Cali</p>
             </div>
@@ -267,189 +239,110 @@
             <li class="rating">★ 4,95 <span class="n">(110 reseñas)</span></li>
           </ul>
           <div class="tags"><span class="tag fav">Favorito entre huéspedes</span><span class="tag ">Piscina compartida</span><span class="tag ">Dos pisos</span></div>
-          <details class="barrio"><summary>Sobre el barrio: Sur de Cali</summary><p>Según la descripción del anuncio queda cerca del centro comercial Unicentro y de Holguines Trade Center, en el sur de la ciudad, una zona residencial y de estrato alto, con edificios con piscina y portería.</p><p>Es cómodo para ir a Pance y al río, y tiene supermercados y centros comerciales a mano, pero para salir a comer o a rumbear hay que coger taxi: Granada y San Antonio quedan a 25 o 30 minutos en carro.</p><p>Es la opción más tranquila y segura de las tres, a cambio de estar lejos del ambiente.</p></details>
+          <details class="barrio"><summary>Sobre el barrio: Sur de Cali</summary><p>Según la descripción del anuncio queda cerca del centro comercial Unicentro y de Holguines Trade Center, en el sur de la ciudad, una zona residencial y de estrato alto, con edificios con piscina y portería.</p><p>Es cómodo para ir a Pance y al río, y tiene supermercados y centros comerciales a mano, pero para salir a comer o a rumbear hay que coger taxi: Granada y San Antonio quedan a 25 o 30 minutos en carro.</p><p>Es la opción más tranquila y segura de las dos, a cambio de estar lejos del ambiente.</p></details>
           <p class="pro">El más probado: 110 reseñas con 4,95. Acabados modernos y anfitrión profesional.</p>
           <a class="btn" href="https://www.airbnb.com/rooms/1134995105818917390?check_in=2026-12-28&check_out=2027-01-01&adults=8" target="_blank" rel="noopener">Ver en Airbnb</a>
         </div>
       </li>
       </ol>
+      
     </details>
 
     <details class="leg" id="finca">
       <summary>
         <span class="leg-head"><span class="dot c-finca"></span><span class="leg-title">Finca</span></span>
         <span class="chips">
-          <span class="chip c-finca">Desde $247.762 por persona</span>
+          <span class="chip c-finca">Desde $218.000 por persona</span>
           <span class="chip">1 a 3 ene</span>
           <span class="chip">2 noches</span>
-          <span class="chip">6 opciones</span>
+          <span class="chip">3 opciones</span>
         </span>
       </summary>
-      <div class="summary"><div><span>Más barata</span><strong>Villa Campestre</strong></div><div><span>Mejor calificada</span><strong>Finca de recreo Dapa</strong></div><div><span>Más camas</span><strong>Green Jay Dapa</strong></div></div>
+      <div class="summary"><div><span>Más barata</span><strong>Casa De Campo En Rozo</strong></div><div><span>Con piscina</span><strong>Rozo Casa campestre</strong></div><div><span>Más grande</span><strong>Finca Lujosa</strong></div></div>
       <ol class="cards">
-      <li class="card" id="villa-campestre">
-        <a class="photo" href="https://www.airbnb.com/rooms/33601199" target="_blank" rel="noopener">
-          <img src="img/villa-campestre.jpg" alt="Foto de Espectacular Villa Campestre" loading="lazy" width="900" height="429">
+      <li class="card" id="casa-campo-rozo">
+        <a class="photo" href="https://www.airbnb.com/rooms/1766334568278669399" target="_blank" rel="noopener">
+          <img src="img/casa-campo-rozo.jpg" alt="Foto de Casa De Campo En Rozo" loading="lazy" width="900" height="429">
         </a>
         <div class="body">
           <div class="top">
             <div>
               <div class="rank">#1 · Precio más bajo</div>
-              <h3>Espectacular Villa Campestre</h3>
-              <p class="place">Villa en Jamundí</p>
+              <h3>Casa De Campo En Rozo</h3>
+              <p class="place">Casa de campo en Rozo, Palmira</p>
             </div>
             <div class="price">
               
-              <span class="total">$1.982.098</span>
+              <span class="total">$1.744.000</span>
             </div>
           </div>
-          <p class="each"><span>Cada uno paga</span><strong>$247.762</strong></p>
+          <p class="each"><span>Cada uno paga</span><strong>$218.000</strong></p>
           <ul class="facts">
-            <li>13 huéspedes</li><li>4 habitaciones</li><li>7 camas</li><li>4,5 baños</li>
-            <li class="rating">★ 4,58 <span class="n">(12 reseñas)</span></li>
+            <li>15 huéspedes</li><li>4 habitaciones</li><li>10 camas</li><li>2 baños</li>
+            <li class="rating">★ Aún sin reseñas</li>
           </ul>
-          <div class="tags"><span class="tag ">Piscina</span><span class="tag ">Jacuzzi</span><span class="tag ">Llegada autónoma</span><span class="tag ">Cancelación gratuita</span></div>
+          <div class="tags"><span class="tag ">Novedad</span><span class="tag ">Cocina equipada</span><span class="tag ">Zona al aire libre</span><span class="tag ">Cancelación gratuita</span></div>
           
-          <p class="pro">La más barata y la que más reseñas tiene entre las fincas. Piscina grande y jacuzzi.</p>
-          <a class="btn" href="https://www.airbnb.com/rooms/33601199?check_in=2027-01-01&check_out=2027-01-03&adults=8" target="_blank" rel="noopener">Ver en Airbnb</a>
+          <p class="pro">La más barata. 10 camas para 8, una por persona, y jardín con zona de estar al aire libre.</p>
+          <a class="btn" href="https://www.airbnb.com/rooms/1766334568278669399?check_in=2027-01-01&check_out=2027-01-03&adults=8" target="_blank" rel="noopener">Ver en Airbnb</a>
         </div>
       </li>
-      <li class="card" id="green-jay-dapa">
-        <a class="photo" href="https://www.airbnb.com/rooms/1511142141665799976" target="_blank" rel="noopener">
-          <img src="img/green-jay-dapa.jpg" alt="Foto de Green Jay Dapa" loading="lazy" width="900" height="429">
+      <li class="card" id="rozo-campestre">
+        <a class="photo" href="https://www.airbnb.com/rooms/1642928955201930897" target="_blank" rel="noopener">
+          <img src="img/rozo-campestre.jpg" alt="Foto de Rozo Casa campestre familiar | Piscina | BBq" loading="lazy" width="900" height="429">
         </a>
         <div class="body">
           <div class="top">
             <div>
               <div class="rank">#2 · Descuento vigente</div>
-              <h3>Green Jay Dapa</h3>
-              <p class="place">Alojamiento en Dapa</p>
+              <h3>Rozo Casa campestre familiar | Piscina | BBq</h3>
+              <p class="place">Casa de campo en Rozo, Palmira</p>
             </div>
             <div class="price">
-              <span class="was">$2.530.000</span>
-              <span class="total">$2.024.000</span>
+              <span class="was">$2.900.000</span>
+              <span class="total">$2.004.000</span>
             </div>
           </div>
-          <p class="each"><span>Cada uno paga</span><strong>$253.000</strong></p>
+          <p class="each"><span>Cada uno paga</span><strong>$250.500</strong></p>
           <ul class="facts">
-            <li>15 huéspedes</li><li>5 habitaciones</li><li>14 camas</li><li>6 baños</li>
+            <li>16 huéspedes</li><li>5 habitaciones</li><li>10 camas</li><li>2 baños</li>
             <li class="rating">★ Sin calificación <span class="n">(2 reseñas)</span></li>
           </ul>
-          <div class="tags"><span class="tag ">Piscina</span><span class="tag ">Jacuzzi</span><span class="tag ">Brasero</span><span class="tag ">Parrilla</span><span class="tag ">Cancelación gratuita</span></div>
+          <div class="tags"><span class="tag ">Piscina</span><span class="tag ">BBQ</span><span class="tag ">Cocina equipada</span><span class="tag ">Cancelación gratuita</span></div>
           
-          <p class="pro">Sobra espacio: 14 camas y 6 baños para 8 personas. Clima fresco en Dapa.</p>
-          <a class="btn" href="https://www.airbnb.com/rooms/1511142141665799976?check_in=2027-01-01&check_out=2027-01-03&adults=8" target="_blank" rel="noopener">Ver en Airbnb</a>
+          <p class="pro">Piscina privada con red de voleibol y zona de BBQ. 5 habitaciones y 10 camas para 8. Descuento de casi un tercio.</p>
+          <a class="btn" href="https://www.airbnb.com/rooms/1642928955201930897?check_in=2027-01-01&check_out=2027-01-03&adults=8" target="_blank" rel="noopener">Ver en Airbnb</a>
         </div>
       </li>
-      <li class="card" id="saladito-meralva">
-        <a class="photo" href="https://www.airbnb.com/rooms/28667828" target="_blank" rel="noopener">
-          <img src="img/saladito-meralva.jpg" alt="Foto de Cali Saladito descanso 10 pax jacuzzi Meralva" loading="lazy" width="900" height="429">
+      <li class="card" id="finca-lujosa">
+        <a class="photo" href="https://www.airbnb.com/rooms/1069918202420903564" target="_blank" rel="noopener">
+          <img src="img/finca-lujosa.jpg" alt="Foto de Finca Lujosa con hermosa piscina" loading="lazy" width="900" height="429">
         </a>
         <div class="body">
           <div class="top">
             <div>
-              <div class="rank">#3 · Mejor nota, pocas reseñas</div>
-              <h3>Cali Saladito descanso 10 pax jacuzzi Meralva</h3>
-              <p class="place">Chalet en El Saladito, Cali</p>
+              <div class="rank">#3 · Más grande · Descuento vigente</div>
+              <h3>Finca Lujosa con hermosa piscina</h3>
+              <p class="place">Casa de huéspedes en Rozo, Palmira</p>
             </div>
             <div class="price">
-              
-              <span class="total">$2.058.563</span>
+              <span class="was">$3.000.000</span>
+              <span class="total">$2.400.000</span>
             </div>
           </div>
-          <p class="each"><span>Cada uno paga</span><strong>$257.320</strong></p>
+          <p class="each"><span>Cada uno paga</span><strong>$300.000</strong></p>
           <ul class="facts">
-            <li>10 huéspedes</li><li>5 habitaciones</li><li>10 camas</li><li>4,5 baños</li>
-            <li class="rating">★ 5,0 <span class="n">(3 reseñas)</span></li>
+            <li>16 huéspedes</li><li>13 habitaciones</li><li>46 camas</li><li>10 baños</li>
+            <li class="rating">★ Aún sin reseñas</li>
           </ul>
-          <div class="tags"><span class="tag ">Jacuzzi</span><span class="tag ">Bosque de niebla</span><span class="tag ">Cancelación gratuita</span></div>
+          <div class="tags"><span class="tag ">Piscina</span><span class="tag ">Brasero</span><span class="tag ">Cena al aire libre</span><span class="tag ">Cancelación gratuita</span></div>
           
-          <p class="pro">Calificación perfecta, anfitriona con 8 años y una cama por persona. 5 habitaciones.</p>
-          <a class="btn" href="https://www.airbnb.com/rooms/28667828?check_in=2027-01-01&check_out=2027-01-03&adults=8" target="_blank" rel="noopener">Ver en Airbnb</a>
-        </div>
-      </li>
-      <li class="card" id="dagua-km26">
-        <a class="photo" href="https://www.airbnb.com/rooms/1262351601757843663" target="_blank" rel="noopener">
-          <img src="img/dagua-km26.jpg" alt="Foto de Casa de campo con piscina y sauna km 26 vía al mar" loading="lazy" width="900" height="429">
-        </a>
-        <div class="body">
-          <div class="top">
-            <div>
-              <div class="rank">#4 · Descuento vigente</div>
-              <h3>Casa de campo con piscina y sauna km 26 vía al mar</h3>
-              <p class="place">Cabaña en Dagua</p>
-            </div>
-            <div class="price">
-              <span class="was">$2.290.000</span>
-              <span class="total">$2.070.000</span>
-            </div>
-          </div>
-          <p class="each"><span>Cada uno paga</span><strong>$258.750</strong></p>
-          <ul class="facts">
-            <li>10 huéspedes</li><li>4 habitaciones</li><li>10 camas</li><li>3 baños</li>
-            <li class="rating">★ 4,8 <span class="n">(5 reseñas)</span></li>
-          </ul>
-          <div class="tags"><span class="tag ">Piscina</span><span class="tag ">Sauna</span><span class="tag ">Terraza</span><span class="tag ">Cancelación gratuita</span></div>
-          
-          <p class="pro">Buena calificación, piscina con vista, sauna y una cama por persona. Precio con descuento.</p>
-          <a class="btn" href="https://www.airbnb.com/rooms/1262351601757843663?check_in=2027-01-01&check_out=2027-01-03&adults=8" target="_blank" rel="noopener">Ver en Airbnb</a>
-        </div>
-      </li>
-      <li class="card" id="finca-el-jardin">
-        <a class="photo" href="https://www.airbnb.com/rooms/1243578139140209598" target="_blank" rel="noopener">
-          <img src="img/finca-el-jardin.jpg" alt="Foto de Finca El Jardín Pance-Cali" loading="lazy" width="900" height="429">
-        </a>
-        <div class="body">
-          <div class="top">
-            <div>
-              <div class="rank">#5 · Más cerca de la ciudad</div>
-              <h3>Finca El Jardín Pance-Cali</h3>
-              <p class="place">Casa de campo en La Voragine, Pance</p>
-            </div>
-            <div class="price">
-              
-              <span class="total">$2.422.959</span>
-            </div>
-          </div>
-          <p class="each"><span>Cada uno paga</span><strong>$302.870</strong></p>
-          <ul class="facts">
-            <li>10 huéspedes</li><li>3 habitaciones</li><li>10 camas</li><li>3 baños</li>
-            <li class="rating">★ 4,67 <span class="n">(3 reseñas)</span></li>
-          </ul>
-          <div class="tags"><span class="tag ">Piscina</span><span class="tag ">Brasero</span><span class="tag ">Parrilla</span><span class="tag ">Cafetera</span><span class="tag ">Cancelación gratuita</span></div>
-          
-          <p class="pro">Pance es la zona más cercana a Cali de las seis, con piscina grande y zona de parrilla.</p>
-          <a class="btn" href="https://www.airbnb.com/rooms/1243578139140209598?check_in=2027-01-01&check_out=2027-01-03&adults=8" target="_blank" rel="noopener">Ver en Airbnb</a>
-        </div>
-      </li>
-      <li class="card" id="finca-recreo-dapa">
-        <a class="photo" href="https://www.airbnb.com/rooms/897636893265667568" target="_blank" rel="noopener">
-          <img src="img/finca-recreo-dapa.jpg" alt="Foto de Finca de recreo Dapa Cali jacuzzi 4 habitaciones" loading="lazy" width="900" height="429">
-        </a>
-        <div class="body">
-          <div class="top">
-            <div>
-              <div class="rank">#6 · Mejor calificación</div>
-              <h3>Finca de recreo Dapa Cali jacuzzi 4 habitaciones</h3>
-              <p class="place">Casa de campo en Dapa, Yumbo</p>
-            </div>
-            <div class="price">
-              
-              <span class="total">$3.547.177</span>
-            </div>
-          </div>
-          <p class="each"><span>Cada uno paga</span><strong>$443.397</strong></p>
-          <ul class="facts">
-            <li>11 huéspedes</li><li>4 habitaciones</li><li>8 camas</li><li>3 baños</li>
-            <li class="rating">★ 4,92 <span class="n">(24 reseñas)</span></li>
-          </ul>
-          <div class="tags"><span class="tag fav">Favorito entre huéspedes</span><span class="tag ">Jacuzzi</span><span class="tag ">Cocina al aire libre</span><span class="tag ">Brasero</span><span class="tag ">Parrilla</span><span class="tag ">Cancelación gratuita</span></div>
-          
-          <p class="pro">La finca más confiable: 4,92 con 24 reseñas y sello de favorito. Casa colonial muy cuidada.</p>
-          <a class="btn" href="https://www.airbnb.com/rooms/897636893265667568?check_in=2027-01-01&check_out=2027-01-03&adults=8" target="_blank" rel="noopener">Ver en Airbnb</a>
+          <p class="pro">Sobra todo: 13 habitaciones y 10 baños, cada quien con cuarto y baño propio. Piscina grande.</p>
+          <a class="btn" href="https://www.airbnb.com/rooms/1069918202420903564?check_in=2027-01-01&check_out=2027-01-03&adults=8" target="_blank" rel="noopener">Ver en Airbnb</a>
         </div>
       </li>
       </ol>
+      <p class="note">Los precios de las fincas se vieron para el 1 al 3 de diciembre. El botón abre Airbnb con las fechas de enero para ver el valor real.</p>
     </details>
     <footer>
       <a href="https://github.com/mayckths/cali">Editar en GitHub</a>
