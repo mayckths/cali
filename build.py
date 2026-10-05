@@ -33,7 +33,7 @@ CIUDAD = dict(
                  "El anuncio la ubica en el sur de Cali, la zona residencial de la ciudad: barrios de casas y conjuntos, con supermercados, centros comerciales como Unicentro y Jardín Plaza, y clínicas cerca.",
                  "Es la parte de la ciudad más cercana a Pance y al río, y queda bien conectada por la Autopista Sur y la Avenida Cañasgordas. Para ir a comer o a rumbear a Granada o San Antonio hay que coger taxi, unos 25 o 30 minutos.",
                  "Es una zona tranquila y segura para un grupo con carro, a cambio de estar lejos del ambiente del centro."]),
-             url="https://www.airbnb.com/rooms/989271767589296963"),
+             url="https://www.airbnb.cl/rooms/989271767589296963?unique_share_id=7cf59e94-326d-4a00-b29f-0e7ffb0964de&viralityEntryPoint=1&s=76"),
         dict(slug="luxury-502", corto="Luxury 502", rank="Más reseñas · Descuento vigente",
              nombre="Luxury apartamento en Cali 502", lugar="Apartamento dúplex en Cali",
              precio=6111968, antes=6774509, cap=9, hab=4, camas=5, banos="2,5", nota="4,95", resenas=110,
@@ -49,7 +49,7 @@ CIUDAD = dict(
 
 FINCA = dict(
     id="finca", titulo="Finca", fechas="1 a 3 ene",
-    aviso="Los precios de las fincas se vieron para el 1 al 3 de diciembre. El botón abre Airbnb con las fechas de enero para ver el valor real.",
+    aviso="Los precios de las fincas se vieron para el 1 al 3 de diciembre. Al abrir el anuncio, pon las fechas de enero para ver el valor real.",
     noches=2, check_in="2027-01-01", check_out="2027-01-03",
     resumen=[("Más barata", "Casa De Campo En Rozo"), ("Con piscina", "Rozo Casa campestre"), ("Más grande", "Finca Lujosa")],
     items=[
@@ -59,21 +59,21 @@ FINCA = dict(
              tags=[("Novedad", ""), ("Cocina equipada", ""), ("Zona al aire libre", ""), ("Cancelación gratuita", "")],
              pro="La más barata. 10 camas para 8, una por persona, y jardín con zona de estar al aire libre.",
              con="Anuncio nuevo sin reseñas. Solo 2 baños para 8.",
-             url="https://www.airbnb.com/rooms/1766334568278669399"),
+             url="https://www.airbnb.cl/rooms/1766334568278669399?unique_share_id=f0e3382e-1fd9-4569-9325-d25b7f12c623&viralityEntryPoint=1&s=76"),
         dict(slug="rozo-campestre", corto="Rozo Campestre", rank="Descuento vigente",
              nombre="Rozo Casa campestre familiar | Piscina | BBq", lugar="Casa de campo en Rozo, Palmira",
              precio=2004000, antes=2900000, cap=16, hab=5, camas=10, banos="2", nota=None, resenas=2,
              tags=[("Piscina", ""), ("BBQ", ""), ("Cocina equipada", ""), ("Cancelación gratuita", "")],
              pro="Piscina privada con red de voleibol y zona de BBQ. 5 habitaciones y 10 camas para 8. Descuento de casi un tercio.",
              con="Anfitriona con 2 meses y 2 reseñas. Solo 2 baños para 8.",
-             url="https://www.airbnb.com/rooms/1642928955201930897"),
+             url="https://www.airbnb.cl/rooms/1642928955201930897?unique_share_id=1cf62c5c-7bb2-4a15-b4b2-25df1617d494&viralityEntryPoint=1&s=76"),
         dict(slug="finca-lujosa", corto="Finca Lujosa", rank="Más grande · Descuento vigente",
              nombre="Finca Lujosa con hermosa piscina", lugar="Casa de huéspedes en Rozo, Palmira",
              precio=2400000, antes=3000000, cap=16, hab=13, camas=46, banos="10", nota=None, resenas=0,
              tags=[("Piscina", ""), ("Brasero", ""), ("Cena al aire libre", ""), ("Cancelación gratuita", "")],
              pro="Sobra todo: 13 habitaciones y 10 baños, cada quien con cuarto y baño propio. Piscina grande.",
              con="Sin reseñas. Es tipo hostal, mucho más grande de lo que necesitan 8.",
-             url="https://www.airbnb.com/rooms/1069918202420903564"),
+             url="https://www.airbnb.cl/rooms/1069918202420903564?unique_share_id=da9e6671-98a1-4e0a-9b78-b7fcc6ab0f95&viralityEntryPoint=1&s=76"),
     ])
 
 
@@ -127,8 +127,7 @@ def card(i, it, leg):
         nota = '★ Aún sin reseñas'
     tags = "".join(f'<span class="tag {c}">{escape(t)}</span>' for t, c in it["tags"])
     if it.get("url"):
-        q = f'?check_in={leg["check_in"]}&check_out={leg["check_out"]}&adults={PERSONAS}'
-        btn = f'<a class="btn" href="{it["url"]}{q}" target="_blank" rel="noopener">Ver en Airbnb</a>'
+        btn = f'<a class="btn" href="{it["url"]}" target="_blank" rel="noopener">Ver en Airbnb</a>'
     else:
         btn = (f'<a class="btn ghost" href="{it["buscar"]}" target="_blank" rel="noopener">Buscar en Airbnb</a>'
                f'<p class="pend">Enlace exacto pendiente. Búsqueda por nombre mientras tanto.</p>')
@@ -334,7 +333,7 @@ HTML = f'''<!DOCTYPE html>
         <p>28 de diciembre al 3 de enero</p>
       </div>
     </header>
-    <p class="intro">Opciones en Airbnb para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy. Precios en COP tal como aparecían el {FECHA_PRECIOS}; pueden cambiar. Los botones abren Airbnb con las fechas y las {PERSONAS} personas ya puestas.</p>
+    <p class="intro">Opciones en Airbnb para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy. Precios en COP tal como aparecían el {FECHA_PRECIOS}; pueden cambiar. Al abrir un anuncio en Airbnb, pon las fechas y las {PERSONAS} personas para ver el precio actualizado.</p>
 {rango()}
 {vuelos()}
 {leg(CIUDAD)}
