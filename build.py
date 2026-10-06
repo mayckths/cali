@@ -34,6 +34,17 @@ CIUDAD = dict(
                  "Es la parte de la ciudad más cercana a Pance y al río, y queda bien conectada por la Autopista Sur y la Avenida Cañasgordas. Para ir a comer o a rumbear a Granada o San Antonio hay que coger taxi, unos 25 o 30 minutos.",
                  "Es una zona tranquila y segura para un grupo con carro, a cambio de estar lejos del ambiente del centro."]),
              url="https://www.airbnb.cl/rooms/989271767589296963?unique_share_id=7cf59e94-326d-4a00-b29f-0e7ffb0964de&viralityEntryPoint=1&s=76"),
+        dict(slug="magusan", corto="Magusan", rank="Booking · Mejor puntuación",
+             nombre="Magusan Holiday Rentals", lugar="Aparthotel en el centro de Cali, Bulevar de la Avenida Colombia",
+             precio=5482030, antes=None, cap=9, hab=3, camas=None, banos="5", nota="9,2", resenas=121, escala="/10",
+             tags=[("Genius", "fav"), ("Aire acondicionado", ""), ("Cocina equipada", ""), ("Ascensor", ""), ("Cancelación gratuita", "")],
+             pro="9,2 sobre 10 con más de 120 reseñas. Combinación que propone Booking: un apartamento de 3 dormitorios, un superior y un estudio, cada uno con cocina y baño propio.",
+             con="Son 3 apartamentos aparte, no una sola casa para estar todos juntos. Cancelación gratis solo hasta el 21 de diciembre.",
+             barrio=dict(nombre="Centro, Bulevar del Río", texto=[
+                 "Queda sobre el Bulevar de la Avenida Colombia, el paseo peatonal junto al río Cali, a pocas cuadras de la Plaza de Cayzedo, La Ermita y la Torre de Cali. Booking lo marca como ubicación fabulosa.",
+                 "Es el centro histórico: de día hay mucho movimiento, museos y comercio, y se camina a San Antonio en 10 minutos y a Granada en 15. De noche el centro se vacía y conviene moverse en taxi.",
+                 "Buena base para turistear, menos para rumbear en casa, porque es un edificio de apartamentos con vecinos."]),
+             url="https://www.booking.com/Share-rqfeDqC", plataforma="Booking"),
         dict(slug="luxury-502", corto="Luxury 502", rank="Más reseñas · Descuento vigente",
              nombre="Luxury apartamento en Cali 502", lugar="Apartamento dúplex en Cali",
              precio=6111968, antes=6774509, cap=9, hab=4, camas=5, banos="2,5", nota="4,95", resenas=110,
@@ -55,17 +66,6 @@ CIUDAD = dict(
                  "El anuncio no indica el barrio exacto. Es una vivienda rentada en Cali con aire acondicionado y dos pisos, pensada para grupos.",
                  "Al abrir el anuncio en Airbnb, el mapa muestra la zona aproximada antes de reservar."]),
              url="https://www.airbnb.cl/rooms/1573229544310770793?unique_share_id=34ffee04-121c-4855-ad51-95b4a7e05b2a&viralityEntryPoint=1&s=76"),
-        dict(slug="magusan", corto="Magusan", rank="Booking · Mejor puntuación",
-             nombre="Magusan Holiday Rentals", lugar="Aparthotel en el centro de Cali, Bulevar de la Avenida Colombia",
-             precio=None, antes=None, cap=8, hab=4, camas=None, banos="4", nota="9,2", resenas=121, escala="/10",
-             tags=[("Genius", "fav"), ("Aire acondicionado", ""), ("Cocina equipada", ""), ("Ascensor", ""), ("Cancelación gratuita", "")],
-             pro="9,2 sobre 10 con más de 120 reseñas. Son apartamentos independientes, así que cada pareja o grupo tendría su propio espacio con cocina y baño.",
-             con="Precio pendiente. Hay que reservar 4 apartamentos aparte, no es una sola casa para estar todos juntos.",
-             barrio=dict(nombre="Centro, Bulevar del Río", texto=[
-                 "Queda sobre el Bulevar de la Avenida Colombia, el paseo peatonal junto al río Cali, a pocas cuadras de la Plaza de Cayzedo, La Ermita y la Torre de Cali. Booking lo marca como ubicación fabulosa.",
-                 "Es el centro histórico: de día hay mucho movimiento, museos y comercio, y se camina a San Antonio en 10 minutos y a Granada en 15. De noche el centro se vacía y conviene moverse en taxi.",
-                 "Buena base para turistear, menos para rumbear en casa, porque es un edificio de apartamentos con vecinos."]),
-             url="https://www.booking.com/Share-rqfeDqC", plataforma="Booking"),
     ])
 
 FINCA = dict(
