@@ -55,6 +55,17 @@ CIUDAD = dict(
                  "El anuncio no indica el barrio exacto. Es una vivienda rentada en Cali con aire acondicionado y dos pisos, pensada para grupos.",
                  "Al abrir el anuncio en Airbnb, el mapa muestra la zona aproximada antes de reservar."]),
              url="https://www.airbnb.cl/rooms/1573229544310770793?unique_share_id=34ffee04-121c-4855-ad51-95b4a7e05b2a&viralityEntryPoint=1&s=76"),
+        dict(slug="magusan", corto="Magusan", rank="Booking · Mejor puntuación",
+             nombre="Magusan Holiday Rentals", lugar="Aparthotel en el centro de Cali, Bulevar de la Avenida Colombia",
+             precio=None, antes=None, cap=8, hab=4, camas=None, banos="4", nota="9,2", resenas=121, escala="/10",
+             tags=[("Genius", "fav"), ("Aire acondicionado", ""), ("Cocina equipada", ""), ("Ascensor", ""), ("Cancelación gratuita", "")],
+             pro="9,2 sobre 10 con más de 120 reseñas. Son apartamentos independientes, así que cada pareja o grupo tendría su propio espacio con cocina y baño.",
+             con="Precio pendiente. Hay que reservar 4 apartamentos aparte, no es una sola casa para estar todos juntos.",
+             barrio=dict(nombre="Centro, Bulevar del Río", texto=[
+                 "Queda sobre el Bulevar de la Avenida Colombia, el paseo peatonal junto al río Cali, a pocas cuadras de la Plaza de Cayzedo, La Ermita y la Torre de Cali. Booking lo marca como ubicación fabulosa.",
+                 "Es el centro histórico: de día hay mucho movimiento, museos y comercio, y se camina a San Antonio en 10 minutos y a Granada en 15. De noche el centro se vacía y conviene moverse en taxi.",
+                 "Buena base para turistear, menos para rumbear en casa, porque es un edificio de apartamentos con vecinos."]),
+             url="https://www.booking.com/Share-rqfeDqC", plataforma="Booking"),
     ])
 
 FINCA = dict(
@@ -130,16 +141,20 @@ def vuelos():
 def card(i, it, leg):
     was = f'<span class="was">{cop(it["antes"])}</span>' if it.get("antes") else ""
     if it["nota"]:
-        nota = f'★ {it["nota"]} <span class="n">({it["resenas"]} reseñas)</span>'
+        nota = f'★ {it["nota"]}{it.get("escala", "")} <span class="n">({it["resenas"]} reseñas)</span>'
     elif it["resenas"]:
         nota = f'★ Sin calificación <span class="n">({it["resenas"]} reseñas)</span>'
     else:
         nota = '★ Aún sin reseñas'
     tags = "".join(f'<span class="tag {c}">{escape(t)}</span>' for t, c in it["tags"])
+    plat = it.get("plataforma", "Airbnb")
     if it.get("url"):
-        sep = "&" if "?" in it["url"] else "?"
-        q = f'{sep}adults={PERSONAS}&check_in={leg["check_in"]}&check_out={leg["check_out"]}'
-        btn = f'<a class="btn" href="{it["url"]}{q}" target="_blank" rel="noopener">Ver en Airbnb</a>'
+        if plat == "Airbnb":
+            sep = "&" if "?" in it["url"] else "?"
+            q = f'{sep}adults={PERSONAS}&check_in={leg["check_in"]}&check_out={leg["check_out"]}'
+        else:
+            q = ""
+        btn = f'<a class="btn" href="{it["url"]}{q}" target="_blank" rel="noopener">Ver en {plat}</a>'
     else:
         btn = (f'<a class="btn ghost" href="{it["buscar"]}" target="_blank" rel="noopener">Buscar en Airbnb</a>'
                f'<p class="pend">Enlace exacto pendiente. Búsqueda por nombre mientras tanto.</p>')
@@ -157,12 +172,12 @@ def card(i, it, leg):
             </div>
             <div class="price">
               {was}
-              <span class="total">{cop(it["precio"])}</span>
+              <span class="total">{cop(it["precio"]) if it["precio"] else "Precio pendiente"}</span>
             </div>
           </div>
-          <p class="each"><span>Cada uno paga</span><strong>{cop(it["precio"] / PERSONAS)}</strong></p>
+          {f'<p class="each"><span>Cada uno paga</span><strong>{cop(it["precio"] / PERSONAS)}</strong></p>' if it["precio"] else '<p class="each"><span>Cada uno paga</span><strong>por confirmar</strong></p>'}
           <ul class="facts">
-            <li>{it["cap"]} huéspedes</li><li>{it["hab"]} habitaciones</li><li>{it["camas"]} camas</li><li>{it["banos"]} baños</li>
+            <li>{it["cap"]} huéspedes</li><li>{it["hab"]} {"apartamentos" if plat == "Booking" else "habitaciones"}</li>{f'<li>{it["camas"]} camas</li>' if it["camas"] else ''}<li>{it["banos"]} baños</li>
             <li class="rating">{nota}</li>
           </ul>
           <div class="tags">{tags}</div>
@@ -181,7 +196,7 @@ def leg(l):
       <summary>
         <span class="leg-head"><span class="dot c-{l["id"]}"></span><span class="leg-title">{escape(l["titulo"])}</span></span>
         <span class="chips">
-          <span class="chip c-{l["id"]}">Desde {cop(min(i["precio"] for i in l["items"]) / PERSONAS)} por persona</span>
+          <span class="chip c-{l["id"]}">Desde {cop(min(i["precio"] for i in l["items"] if i["precio"]) / PERSONAS)} por persona</span>
           <span class="chip">{escape(l["fechas"])}</span>
           <span class="chip">{l["noches"]} noches</span>
           <span class="chip">{len(l["items"])} opciones</span>
@@ -306,10 +321,10 @@ CSS = """
 """
 
 def rango():
-    c_min = min(i["precio"] for i in CIUDAD["items"]) / PERSONAS
-    c_max = max(i["precio"] for i in CIUDAD["items"]) / PERSONAS
-    f_min = min(i["precio"] for i in FINCA["items"]) / PERSONAS
-    f_max = max(i["precio"] for i in FINCA["items"]) / PERSONAS
+    cp = [i["precio"] for i in CIUDAD["items"] if i["precio"]]
+    fp = [i["precio"] for i in FINCA["items"] if i["precio"]]
+    c_min, c_max = min(cp) / PERSONAS, max(cp) / PERSONAS
+    f_min, f_max = min(fp) / PERSONAS, max(fp) / PERSONAS
     t_min = VUELO_MIN + c_min + f_min
     t_max = VUELO_MAX + c_max + f_max
     return f'''
@@ -345,7 +360,7 @@ HTML = f'''<!DOCTYPE html>
         <p>28 de diciembre al 3 de enero</p>
       </div>
     </header>
-    <p class="intro">Opciones en Airbnb para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy. Precios en COP tal como aparecían el {FECHA_PRECIOS}; pueden cambiar. Los botones abren Airbnb con las fechas del tramo y las {PERSONAS} personas ya puestas.</p>
+    <p class="intro">Opciones en Airbnb y Booking para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy. Precios en COP tal como aparecían el {FECHA_PRECIOS}; pueden cambiar. Los botones abren el anuncio con las fechas del tramo y las {PERSONAS} personas ya puestas.</p>
 {rango()}
 {vuelos()}
 {leg(CIUDAD)}
