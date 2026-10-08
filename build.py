@@ -70,9 +70,9 @@ CIUDAD = dict(
 
 FINCA = dict(
     id="finca", titulo="Finca", fechas="1 a 3 ene",
-    aviso="Los precios de las fincas se vieron para el 1 al 3 de diciembre. El botón abre el anuncio con las fechas de enero para ver el valor real.",
+    aviso="Los precios de las tres primeras fincas se vieron para el 1 al 3 de diciembre. El botón abre el anuncio con las fechas de enero para ver el valor real.",
     noches=2, check_in="2027-01-01", check_out="2027-01-03",
-    resumen=[("Más barata", "Casa De Campo En Rozo"), ("Con piscina", "Rozo Casa campestre"), ("Más grande", "Finca Lujosa")],
+    resumen=[("Más barata", "Casa De Campo En Rozo"), ("Mejor calificada", "Finca Angela"), ("Más grande", "Finca Lujosa")],
     items=[
         dict(slug="casa-campo-rozo", corto="Casa De Campo Rozo", rank="Precio más bajo",
              nombre="Casa De Campo En Rozo", lugar="Casa de campo en Rozo, Palmira",
@@ -95,6 +95,13 @@ FINCA = dict(
              pro="Sobra todo: 13 habitaciones y 10 baños, cada quien con cuarto y baño propio. Piscina grande.",
              con="Sin reseñas. Es tipo hostal, mucho más grande de lo que necesitan 8.",
              url="https://www.airbnb.cl/rooms/1069918202420903564?unique_share_id=da9e6671-98a1-4e0a-9b78-b7fcc6ab0f95&viralityEntryPoint=1&s=76"),
+        dict(slug="finca-angela", corto="Finca Angela", rank="Mejor calificación · Precio de enero",
+             nombre="Finca nueva encantadora con jacuzzi", lugar="Alojamiento vacacional en Rozo, Palmira",
+             precio=2800000, antes=None, cap=8, hab=3, camas=4, banos="3", nota="4,91", resenas=43,
+             tags=[("Favorito entre huéspedes", "fav"), ("Piscina", ""), ("Jacuzzi", ""), ("Brasero", ""), ("Cancelación gratuita", "")],
+             pro="La finca más confiable: 4,91 con 43 reseñas, sello de favorito y anfitriona con 8 años. Piscina, jacuzzi y 3 baños. Único precio ya cotizado para el 1 al 3 de enero.",
+             con="Solo 4 camas para 8, así que todos comparten. La más cara de las fincas.",
+             url="https://www.airbnb.cl/rooms/713793181158552706?unique_share_id=4c55635e-3083-4fd6-b81f-16170c3703dd&viralityEntryPoint=1&s=76"),
     ])
 
 
