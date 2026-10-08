@@ -66,6 +66,16 @@ CIUDAD = dict(
                  "El anuncio no indica el barrio exacto. Es una vivienda rentada en Cali con aire acondicionado y dos pisos, pensada para grupos.",
                  "Al abrir el anuncio en Airbnb, el mapa muestra la zona aproximada antes de reservar."]),
              url="https://www.airbnb.cl/rooms/1573229544310770793?unique_share_id=34ffee04-121c-4855-ad51-95b4a7e05b2a&viralityEntryPoint=1&s=76"),
+        dict(slug="apto-jaime", corto="Apto Jaime", rank="Superanfitrión · Precio pendiente",
+             nombre="Apartamento grande y cómodo - Cozy large apartment", lugar="Vivienda en Cali, cerca del centro y la Avenida 6N",
+             precio=None, antes=None, cap=14, hab=3, camas=7, banos="2", nota="4,63", resenas=38,
+             tags=[("Superanfitrión", ""), ("Zona de trabajo con wifi", ""), ("Ventilador", "")],
+             pro="Superanfitrión con 4 años y 38 reseñas. 7 camas para 8, casi una por persona.",
+             con="Precio pendiente. Solo 2 baños para 8, y la calificación es la más baja de la ciudad. No menciona aire acondicionado.",
+             barrio=dict(nombre="Norte, cerca de la Avenida 6N", texto=[
+                 "El anuncio dice que está en el corazón de Cali, cerca del centro y de la Avenida 6N, la avenida que cruza el norte y conecta Granada, Chipichape y el centro.",
+                 "Si queda sobre la 6N, Granada y su zona de restaurantes están a pocas cuadras a pie. Al abrir el anuncio en Airbnb, el mapa muestra la zona aproximada antes de reservar."]),
+             url="https://www.airbnb.cl/rooms/876849081818118019?unique_share_id=561908c4-437e-4286-9436-9c5a097e3c69&viralityEntryPoint=1&s=76"),
     ])
 
 FINCA = dict(
