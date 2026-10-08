@@ -18,7 +18,7 @@ VUELO_MAX = max(v["precio"] for v in VUELOS["items"])
 CIUDAD = dict(
     id="ciudad", titulo="En la ciudad", fechas="28 dic a 1 ene",
     noches=4, check_in="2026-12-28", check_out="2027-01-01",
-    resumen=[("Más barata", "Apto Jaime"), ("Más reseñas", "Luxury 502"), ("Mejor calificada", "Posada ABBA")],
+    resumen=[("Más barata", "Apto Jaime"), ("Mejor calificada", "Posada ABBA"), ("Más baños", "Posada ABBA")],
     items=[
         dict(slug="apto-jaime", corto="Apto Jaime", rank="Precio más bajo · Superanfitrión",
              nombre="Apartamento grande y cómodo - Cozy large apartment", lugar="Vivienda en Cali, cerca del centro y la Avenida 6N",
@@ -41,38 +41,6 @@ CIUDAD = dict(
                  "Es la parte de la ciudad más cercana a Pance y al río, y queda bien conectada por la Autopista Sur y la Avenida Cañasgordas. Para ir a comer o a rumbear a Granada o San Antonio hay que coger taxi, unos 25 o 30 minutos.",
                  "Es una zona tranquila y segura para un grupo con carro, a cambio de estar lejos del ambiente del centro."]),
              url="https://www.airbnb.cl/rooms/989271767589296963?unique_share_id=7cf59e94-326d-4a00-b29f-0e7ffb0964de&viralityEntryPoint=1&s=76"),
-        dict(slug="magusan", corto="Magusan", rank="Booking · Mejor puntuación",
-             nombre="Magusan Holiday Rentals", lugar="Aparthotel en el centro de Cali, Bulevar de la Avenida Colombia",
-             precio=5482030, antes=None, cap=9, hab=3, camas=None, banos="5", nota="9,2", resenas=121, escala="/10",
-             tags=[("Genius", "fav"), ("Aire acondicionado", ""), ("Cocina equipada", ""), ("Ascensor", ""), ("Cancelación gratuita", "")],
-             pro="9,2 sobre 10 con más de 120 reseñas. Combinación que propone Booking: un apartamento de 3 dormitorios, un superior y un estudio, cada uno con cocina y baño propio.",
-             con="Son 3 apartamentos aparte, no una sola casa para estar todos juntos. Cancelación gratis solo hasta el 21 de diciembre.",
-             barrio=dict(nombre="Centro, Bulevar del Río", texto=[
-                 "Queda sobre el Bulevar de la Avenida Colombia, el paseo peatonal junto al río Cali, a pocas cuadras de la Plaza de Cayzedo, La Ermita y la Torre de Cali. Booking lo marca como ubicación fabulosa.",
-                 "Es el centro histórico: de día hay mucho movimiento, museos y comercio, y se camina a San Antonio en 10 minutos y a Granada en 15. De noche el centro se vacía y conviene moverse en taxi.",
-                 "Buena base para turistear, menos para rumbear en casa, porque es un edificio de apartamentos con vecinos."]),
-             url="https://www.booking.com/Share-rqfeDqC", plataforma="Booking"),
-        dict(slug="luxury-502", corto="Luxury 502", rank="Más reseñas · Descuento vigente",
-             nombre="Luxury apartamento en Cali 502", lugar="Apartamento dúplex en Cali",
-             precio=6111968, antes=6774509, cap=9, hab=4, camas=5, banos="2,5", nota="4,95", resenas=110,
-             tags=[("Favorito entre huéspedes", "fav"), ("Piscina compartida", ""), ("Dos pisos", "")],
-             pro="El más probado: 110 reseñas con 4,95. Acabados modernos y anfitrión profesional.",
-             con="5 camas para 8, y no muestra cancelación gratuita.",
-             barrio=dict(nombre="Sur de Cali", texto=[
-                 "Según la descripción del anuncio queda cerca del centro comercial Unicentro y de Holguines Trade Center, en el sur de la ciudad, una zona residencial y de estrato alto, con edificios con piscina y portería.",
-                 "Es cómodo para ir a Pance y al río, y tiene supermercados y centros comerciales a mano, pero para salir a comer o a rumbear hay que coger taxi: Granada y San Antonio quedan a 25 o 30 minutos en carro.",
-                 "Es una zona tranquila y segura, a cambio de estar lejos del ambiente."]),
-             url="https://www.airbnb.com/rooms/1134995105818917390"),
-        dict(slug="duplex-s4", corto="Dúplex S4", rank="Mayor descuento",
-             nombre="S4 - Dúplex moderno | Aire acondicionado · Ideal para grupos", lugar="Vivienda en Cali",
-             precio=6550000, antes=11446852, cap=12, hab=4, camas=6, banos="2", nota="4,84", resenas=31,
-             tags=[("Favorito entre huéspedes", "fav"), ("Aire acondicionado", ""), ("Dos pisos", ""), ("Cancelación gratuita", "")],
-             pro="31 reseñas con 4,84 y sello de favorito. Cabe 12, con 4 habitaciones y 6 camas para 8. Descuento de más del 40 %.",
-             con="Solo 2 baños para 8.",
-             barrio=dict(nombre="Cali", texto=[
-                 "El anuncio no indica el barrio exacto. Es una vivienda rentada en Cali con aire acondicionado y dos pisos, pensada para grupos.",
-                 "Al abrir el anuncio en Airbnb, el mapa muestra la zona aproximada antes de reservar."]),
-             url="https://www.airbnb.cl/rooms/1573229544310770793?unique_share_id=34ffee04-121c-4855-ad51-95b4a7e05b2a&viralityEntryPoint=1&s=76"),
     ])
 
 FINCA = dict(
@@ -385,7 +353,7 @@ HTML = f'''<!DOCTYPE html>
         <p>28 de diciembre al 3 de enero</p>
       </div>
     </header>
-    <p class="intro">Opciones en Airbnb y Booking para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy. Precios en COP tal como aparecían el {FECHA_PRECIOS}; pueden cambiar. Los botones abren el anuncio con las fechas del tramo y las {PERSONAS} personas ya puestas.</p>
+    <p class="intro">Opciones en Airbnb para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy. Precios en COP tal como aparecían el {FECHA_PRECIOS}; pueden cambiar. Los botones abren el anuncio con las fechas del tramo y las {PERSONAS} personas ya puestas.</p>
 {rango()}
 {vuelos()}
 {leg(CIUDAD)}
