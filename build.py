@@ -6,14 +6,11 @@ PERSONAS = 8
 FECHA_PRECIOS = "18 de septiembre de 2026"
 
 VUELOS = dict(
-    ruta="Bogotá (BOG) a Cali (CLO)", sub="Ida y vuelta, por persona. Vistos en Google Flights el 18 de septiembre de 2026.",
+    ruta="Bogotá (BOG) a Cali (CLO)", sub="Ida y vuelta por persona, 28 de diciembre al 3 de enero. Vistos en Google Flights el 8 de octubre de 2026. Sin equipaje de mano.",
     items=[
-        dict(aerolinea="Wingo", sale="7:10", llega="8:18", dur="1 h 8 min", precio=366425,
-             notas=["Directo", "Solo artículo personal, sin equipaje de mano", "Billetes separados: ida y vuelta se compran aparte"]),
-        dict(aerolinea="JetSMART", sale="5:05", llega="6:19", dur="1 h 14 min", precio=393790,
-             notas=["Directo", "Solo artículo personal, sin equipaje de mano", "Un solo billete"]),
-        dict(aerolinea="LATAM", sale="14:05", llega="15:15", dur="1 h 10 min", precio=394390,
-             notas=["Directo", "Solo artículo personal, sin equipaje de mano", "Billetes separados: ida y vuelta se compran aparte"]),
+        dict(aerolinea="Wingo", sale="0:00", llega="1:08", dur="1 h 8 min", precio=392775),
+        dict(aerolinea="JetSMART", sale="5:05", llega="6:19", dur="1 h 14 min", precio=438060),
+        dict(aerolinea="LATAM", sale="11:30", llega="12:40", dur="1 h 10 min", precio=439010),
     ])
 VUELO_MIN = min(v["precio"] for v in VUELOS["items"])
 VUELO_MAX = max(v["precio"] for v in VUELOS["items"])
