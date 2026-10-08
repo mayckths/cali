@@ -21,9 +21,19 @@ VUELO_MAX = max(v["precio"] for v in VUELOS["items"])
 CIUDAD = dict(
     id="ciudad", titulo="En la ciudad", fechas="28 dic a 1 ene",
     noches=4, check_in="2026-12-28", check_out="2027-01-01",
-    resumen=[("Más barata", "Posada ABBA"), ("Más reseñas", "Luxury 502"), ("Más baños", "Posada ABBA")],
+    resumen=[("Más barata", "Apto Jaime"), ("Más reseñas", "Luxury 502"), ("Mejor calificada", "Posada ABBA")],
     items=[
-        dict(slug="posada-abba", corto="Posada ABBA", rank="Precio más bajo · Mejor calificación",
+        dict(slug="apto-jaime", corto="Apto Jaime", rank="Precio más bajo · Superanfitrión",
+             nombre="Apartamento grande y cómodo - Cozy large apartment", lugar="Vivienda en Cali, cerca del centro y la Avenida 6N",
+             precio=2832225, antes=None, precio_nota="Cotizado 2.124.169 por 3 noches, 28 al 31. Estimado a 4 noches.", cap=14, hab=3, camas=7, banos="2", nota="4,63", resenas=38,
+             tags=[("Superanfitrión", ""), ("Zona de trabajo con wifi", ""), ("Cancelación gratuita", "")],
+             pro="La más barata de la ciudad por lejos. Superanfitrión con 4 años y 38 reseñas, 7 camas para 8 y cancelación gratis hasta el 27 de diciembre.",
+             con="Solo 2 baños para 8, y la calificación es la más baja de la ciudad. No menciona aire acondicionado.",
+             barrio=dict(nombre="Norte, cerca de la Avenida 6N", texto=[
+                 "El anuncio dice que está en el corazón de Cali, cerca del centro y de la Avenida 6N, la avenida que cruza el norte y conecta Granada, Chipichape y el centro.",
+                 "Si queda sobre la 6N, Granada y su zona de restaurantes están a pocas cuadras a pie. Al abrir el anuncio en Airbnb, el mapa muestra la zona aproximada antes de reservar."]),
+             url="https://www.airbnb.cl/rooms/876849081818118019?unique_share_id=561908c4-437e-4286-9436-9c5a097e3c69&viralityEntryPoint=1&s=76"),
+        dict(slug="posada-abba", corto="Posada ABBA", rank="Mejor calificación",
              nombre="Posada Familiar ABBA. Casa al sur de Cali", lugar="Casa en el sur de Cali",
              precio=3953711, antes=None, cap=10, hab=5, camas=7, banos="4,5", nota="5,0", resenas=7,
              tags=[("Favorito entre huéspedes", "fav"), ("Aire acondicionado", ""), ("Cancelación gratuita", "")],
@@ -66,16 +76,6 @@ CIUDAD = dict(
                  "El anuncio no indica el barrio exacto. Es una vivienda rentada en Cali con aire acondicionado y dos pisos, pensada para grupos.",
                  "Al abrir el anuncio en Airbnb, el mapa muestra la zona aproximada antes de reservar."]),
              url="https://www.airbnb.cl/rooms/1573229544310770793?unique_share_id=34ffee04-121c-4855-ad51-95b4a7e05b2a&viralityEntryPoint=1&s=76"),
-        dict(slug="apto-jaime", corto="Apto Jaime", rank="Superanfitrión · Precio pendiente",
-             nombre="Apartamento grande y cómodo - Cozy large apartment", lugar="Vivienda en Cali, cerca del centro y la Avenida 6N",
-             precio=None, antes=None, cap=14, hab=3, camas=7, banos="2", nota="4,63", resenas=38,
-             tags=[("Superanfitrión", ""), ("Zona de trabajo con wifi", ""), ("Ventilador", "")],
-             pro="Superanfitrión con 4 años y 38 reseñas. 7 camas para 8, casi una por persona.",
-             con="Precio pendiente. Solo 2 baños para 8, y la calificación es la más baja de la ciudad. No menciona aire acondicionado.",
-             barrio=dict(nombre="Norte, cerca de la Avenida 6N", texto=[
-                 "El anuncio dice que está en el corazón de Cali, cerca del centro y de la Avenida 6N, la avenida que cruza el norte y conecta Granada, Chipichape y el centro.",
-                 "Si queda sobre la 6N, Granada y su zona de restaurantes están a pocas cuadras a pie. Al abrir el anuncio en Airbnb, el mapa muestra la zona aproximada antes de reservar."]),
-             url="https://www.airbnb.cl/rooms/876849081818118019?unique_share_id=561908c4-437e-4286-9436-9c5a097e3c69&viralityEntryPoint=1&s=76"),
     ])
 
 FINCA = dict(
@@ -190,6 +190,7 @@ def card(i, it, leg):
             <div class="price">
               {was}
               <span class="total">{cop(it["precio"]) if it["precio"] else "Precio pendiente"}</span>
+              {f'<span class="night">{escape(it["precio_nota"])}</span>' if it.get("precio_nota") else ''}
             </div>
           </div>
           {f'<p class="each"><span>Cada uno paga</span><strong>{cop(it["precio"] / PERSONAS)}</strong></p>' if it["precio"] else '<p class="each"><span>Cada uno paga</span><strong>por confirmar</strong></p>'}
@@ -284,6 +285,7 @@ CSS = """
     h3 { font-size: 1.15rem; margin: 2px 0 2px; line-height: 1.3; }
     .place { color: var(--muted); font-size: 0.95rem; margin: 0; }
     .price { text-align: right; white-space: nowrap; }
+    .price .night { white-space: normal; max-width: 220px; }
     .price .total { font-weight: 700; font-size: 1.1rem; display: block; }
     .price .was { color: var(--muted); text-decoration: line-through; font-size: 0.85rem; display: block; }
     .price .night { color: var(--muted); font-size: 0.8rem; display: block; }

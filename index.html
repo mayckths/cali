@@ -64,6 +64,7 @@
     h3 { font-size: 1.15rem; margin: 2px 0 2px; line-height: 1.3; }
     .place { color: var(--muted); font-size: 0.95rem; margin: 0; }
     .price { text-align: right; white-space: nowrap; }
+    .price .night { white-space: normal; max-width: 220px; }
     .price .total { font-weight: 700; font-size: 1.1rem; display: block; }
     .price .was { color: var(--muted); text-decoration: line-through; font-size: 0.85rem; display: block; }
     .price .night { color: var(--muted); font-size: 0.8rem; display: block; }
@@ -131,11 +132,11 @@
 
     <section class="grand" aria-label="Total por persona">
       <span class="total-label">Total por persona, vuelos y estadía</span>
-      <strong class="total-range">$1.078.639 a $1.563.140</strong>
+      <strong class="total-range">$938.453 a $1.563.140</strong>
       <span class="total-sub">Vuelo ida y vuelta, 4 noches en la ciudad y 2 en finca, dividido entre 8.</span>
       <div class="chips">
         <span class="chip c-vuelos">Vuelo $366.425 a $394.390</span>
-        <span class="chip c-ciudad">Ciudad $494.214 a $818.750</span>
+        <span class="chip c-ciudad">Ciudad $354.028 a $818.750</span>
         <span class="chip c-finca">Finca $218.000 a $350.000</span>
       </div>
     </section>
@@ -182,14 +183,42 @@
       <summary>
         <span class="leg-head"><span class="dot c-ciudad"></span><span class="leg-title">En la ciudad</span></span>
         <span class="chips">
-          <span class="chip c-ciudad">Desde $494.214 por persona</span>
+          <span class="chip c-ciudad">Desde $354.028 por persona</span>
           <span class="chip">28 dic a 1 ene</span>
           <span class="chip">4 noches</span>
           <span class="chip">5 opciones</span>
         </span>
       </summary>
-      <div class="summary"><div><span>Más barata</span><strong>Posada ABBA</strong></div><div><span>Más reseñas</span><strong>Luxury 502</strong></div><div><span>Más baños</span><strong>Posada ABBA</strong></div></div>
+      <div class="summary"><div><span>Más barata</span><strong>Apto Jaime</strong></div><div><span>Más reseñas</span><strong>Luxury 502</strong></div><div><span>Mejor calificada</span><strong>Posada ABBA</strong></div></div>
       <ol class="cards">
+      <li class="card" id="apto-jaime">
+        <a class="photo" href="https://www.airbnb.cl/rooms/876849081818118019?unique_share_id=561908c4-437e-4286-9436-9c5a097e3c69&viralityEntryPoint=1&s=76&adults=8&check_in=2026-12-28&check_out=2027-01-01" target="_blank" rel="noopener">
+          <img src="img/apto-jaime.jpg" alt="Foto de Apartamento grande y cómodo - Cozy large apartment" loading="lazy" width="900" height="429">
+        </a>
+        <div class="body">
+          <div class="top">
+            <div>
+              <div class="rank">#1 · Precio más bajo · Superanfitrión</div>
+              <h3>Apartamento grande y cómodo - Cozy large apartment</h3>
+              <p class="place">Vivienda en Cali, cerca del centro y la Avenida 6N</p>
+            </div>
+            <div class="price">
+              
+              <span class="total">$2.832.225</span>
+              <span class="night">Cotizado 2.124.169 por 3 noches, 28 al 31. Estimado a 4 noches.</span>
+            </div>
+          </div>
+          <p class="each"><span>Cada uno paga</span><strong>$354.028</strong></p>
+          <ul class="facts">
+            <li>14 huéspedes</li><li>3 habitaciones</li><li>7 camas</li><li>2 baños</li>
+            <li class="rating">★ 4,63 <span class="n">(38 reseñas)</span></li>
+          </ul>
+          <div class="tags"><span class="tag ">Superanfitrión</span><span class="tag ">Zona de trabajo con wifi</span><span class="tag ">Cancelación gratuita</span></div>
+          <details class="barrio"><summary>Sobre el barrio: Norte, cerca de la Avenida 6N</summary><p>El anuncio dice que está en el corazón de Cali, cerca del centro y de la Avenida 6N, la avenida que cruza el norte y conecta Granada, Chipichape y el centro.</p><p>Si queda sobre la 6N, Granada y su zona de restaurantes están a pocas cuadras a pie. Al abrir el anuncio en Airbnb, el mapa muestra la zona aproximada antes de reservar.</p></details>
+          <p class="pro">La más barata de la ciudad por lejos. Superanfitrión con 4 años y 38 reseñas, 7 camas para 8 y cancelación gratis hasta el 27 de diciembre.</p>
+          <a class="btn" href="https://www.airbnb.cl/rooms/876849081818118019?unique_share_id=561908c4-437e-4286-9436-9c5a097e3c69&viralityEntryPoint=1&s=76&adults=8&check_in=2026-12-28&check_out=2027-01-01" target="_blank" rel="noopener">Ver en Airbnb</a>
+        </div>
+      </li>
       <li class="card" id="posada-abba">
         <a class="photo" href="https://www.airbnb.cl/rooms/989271767589296963?unique_share_id=7cf59e94-326d-4a00-b29f-0e7ffb0964de&viralityEntryPoint=1&s=76&adults=8&check_in=2026-12-28&check_out=2027-01-01" target="_blank" rel="noopener">
           <img src="img/posada-abba.jpg" alt="Foto de Posada Familiar ABBA. Casa al sur de Cali" loading="lazy" width="900" height="429">
@@ -197,13 +226,14 @@
         <div class="body">
           <div class="top">
             <div>
-              <div class="rank">#1 · Precio más bajo · Mejor calificación</div>
+              <div class="rank">#2 · Mejor calificación</div>
               <h3>Posada Familiar ABBA. Casa al sur de Cali</h3>
               <p class="place">Casa en el sur de Cali</p>
             </div>
             <div class="price">
               
               <span class="total">$3.953.711</span>
+              
             </div>
           </div>
           <p class="each"><span>Cada uno paga</span><strong>$494.214</strong></p>
@@ -224,13 +254,14 @@
         <div class="body">
           <div class="top">
             <div>
-              <div class="rank">#2 · Booking · Mejor puntuación</div>
+              <div class="rank">#3 · Booking · Mejor puntuación</div>
               <h3>Magusan Holiday Rentals</h3>
               <p class="place">Aparthotel en el centro de Cali, Bulevar de la Avenida Colombia</p>
             </div>
             <div class="price">
               
               <span class="total">$5.482.030</span>
+              
             </div>
           </div>
           <p class="each"><span>Cada uno paga</span><strong>$685.254</strong></p>
@@ -251,13 +282,14 @@
         <div class="body">
           <div class="top">
             <div>
-              <div class="rank">#3 · Más reseñas · Descuento vigente</div>
+              <div class="rank">#4 · Más reseñas · Descuento vigente</div>
               <h3>Luxury apartamento en Cali 502</h3>
               <p class="place">Apartamento dúplex en Cali</p>
             </div>
             <div class="price">
               <span class="was">$6.774.509</span>
               <span class="total">$6.111.968</span>
+              
             </div>
           </div>
           <p class="each"><span>Cada uno paga</span><strong>$763.996</strong></p>
@@ -278,13 +310,14 @@
         <div class="body">
           <div class="top">
             <div>
-              <div class="rank">#4 · Mayor descuento</div>
+              <div class="rank">#5 · Mayor descuento</div>
               <h3>S4 - Dúplex moderno | Aire acondicionado · Ideal para grupos</h3>
               <p class="place">Vivienda en Cali</p>
             </div>
             <div class="price">
               <span class="was">$11.446.852</span>
               <span class="total">$6.550.000</span>
+              
             </div>
           </div>
           <p class="each"><span>Cada uno paga</span><strong>$818.750</strong></p>
@@ -296,33 +329,6 @@
           <details class="barrio"><summary>Sobre el barrio: Cali</summary><p>El anuncio no indica el barrio exacto. Es una vivienda rentada en Cali con aire acondicionado y dos pisos, pensada para grupos.</p><p>Al abrir el anuncio en Airbnb, el mapa muestra la zona aproximada antes de reservar.</p></details>
           <p class="pro">31 reseñas con 4,84 y sello de favorito. Cabe 12, con 4 habitaciones y 6 camas para 8. Descuento de más del 40 %.</p>
           <a class="btn" href="https://www.airbnb.cl/rooms/1573229544310770793?unique_share_id=34ffee04-121c-4855-ad51-95b4a7e05b2a&viralityEntryPoint=1&s=76&adults=8&check_in=2026-12-28&check_out=2027-01-01" target="_blank" rel="noopener">Ver en Airbnb</a>
-        </div>
-      </li>
-      <li class="card" id="apto-jaime">
-        <a class="photo" href="https://www.airbnb.cl/rooms/876849081818118019?unique_share_id=561908c4-437e-4286-9436-9c5a097e3c69&viralityEntryPoint=1&s=76&adults=8&check_in=2026-12-28&check_out=2027-01-01" target="_blank" rel="noopener">
-          <img src="img/apto-jaime.jpg" alt="Foto de Apartamento grande y cómodo - Cozy large apartment" loading="lazy" width="900" height="429">
-        </a>
-        <div class="body">
-          <div class="top">
-            <div>
-              <div class="rank">#5 · Superanfitrión · Precio pendiente</div>
-              <h3>Apartamento grande y cómodo - Cozy large apartment</h3>
-              <p class="place">Vivienda en Cali, cerca del centro y la Avenida 6N</p>
-            </div>
-            <div class="price">
-              
-              <span class="total">Precio pendiente</span>
-            </div>
-          </div>
-          <p class="each"><span>Cada uno paga</span><strong>por confirmar</strong></p>
-          <ul class="facts">
-            <li>14 huéspedes</li><li>3 habitaciones</li><li>7 camas</li><li>2 baños</li>
-            <li class="rating">★ 4,63 <span class="n">(38 reseñas)</span></li>
-          </ul>
-          <div class="tags"><span class="tag ">Superanfitrión</span><span class="tag ">Zona de trabajo con wifi</span><span class="tag ">Ventilador</span></div>
-          <details class="barrio"><summary>Sobre el barrio: Norte, cerca de la Avenida 6N</summary><p>El anuncio dice que está en el corazón de Cali, cerca del centro y de la Avenida 6N, la avenida que cruza el norte y conecta Granada, Chipichape y el centro.</p><p>Si queda sobre la 6N, Granada y su zona de restaurantes están a pocas cuadras a pie. Al abrir el anuncio en Airbnb, el mapa muestra la zona aproximada antes de reservar.</p></details>
-          <p class="pro">Superanfitrión con 4 años y 38 reseñas. 7 camas para 8, casi una por persona.</p>
-          <a class="btn" href="https://www.airbnb.cl/rooms/876849081818118019?unique_share_id=561908c4-437e-4286-9436-9c5a097e3c69&viralityEntryPoint=1&s=76&adults=8&check_in=2026-12-28&check_out=2027-01-01" target="_blank" rel="noopener">Ver en Airbnb</a>
         </div>
       </li>
       </ol>
@@ -355,6 +361,7 @@
             <div class="price">
               
               <span class="total">$1.744.000</span>
+              
             </div>
           </div>
           <p class="each"><span>Cada uno paga</span><strong>$218.000</strong></p>
@@ -382,6 +389,7 @@
             <div class="price">
               <span class="was">$2.900.000</span>
               <span class="total">$2.004.000</span>
+              
             </div>
           </div>
           <p class="each"><span>Cada uno paga</span><strong>$250.500</strong></p>
@@ -409,6 +417,7 @@
             <div class="price">
               <span class="was">$3.000.000</span>
               <span class="total">$2.400.000</span>
+              
             </div>
           </div>
           <p class="each"><span>Cada uno paga</span><strong>$300.000</strong></p>
@@ -436,6 +445,7 @@
             <div class="price">
               
               <span class="total">$2.800.000</span>
+              
             </div>
           </div>
           <p class="each"><span>Cada uno paga</span><strong>$350.000</strong></p>
