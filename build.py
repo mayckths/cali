@@ -25,7 +25,7 @@ CIUDAD = dict(
     items=[
         dict(slug="apto-jaime", corto="Apto Jaime", rank="Precio más bajo · Superanfitrión",
              nombre="Apartamento grande y cómodo - Cozy large apartment", lugar="Vivienda en Cali, cerca del centro y la Avenida 6N",
-             precio=2832225, antes=None, precio_nota="Cotizado 2.124.169 por 3 noches, 28 al 31. Estimado a 4 noches.", cap=14, hab=3, camas=7, banos="2", nota="4,63", resenas=38,
+             precio=2826961, antes=None, cap=14, hab=3, camas=7, banos="2", nota="4,63", resenas=38,
              tags=[("Superanfitrión", ""), ("Zona de trabajo con wifi", ""), ("Cancelación gratuita", "")],
              pro="La más barata de la ciudad por lejos. Superanfitrión con 4 años y 38 reseñas, 7 camas para 8 y cancelación gratis hasta el 27 de diciembre.",
              con="Solo 2 baños para 8, y la calificación es la más baja de la ciudad. No menciona aire acondicionado.",
