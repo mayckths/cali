@@ -29,6 +29,15 @@
     .total-label { display: block; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
     .total-range { display: block; font-size: clamp(1.4rem, 6vw, 1.9rem); letter-spacing: -0.02em; margin: 2px 0 4px; }
     .total-sub { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; }
+    .picker { display: grid; gap: 10px; margin: 10px 0 14px; }
+    .picker label { display: grid; gap: 4px; font-size: 0.8rem; color: var(--muted); }
+    .picker select { width: 100%; font: inherit; font-size: 0.95rem; color: var(--fg); background: var(--bg);
+      border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; -webkit-appearance: none; appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+      background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 34px; }
+    .result { background: var(--accent-bg); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+    .result .total-range { color: var(--accent); margin-bottom: 2px; }
+    .result .total-sub { margin-bottom: 0; }
     .chips { display: flex; flex-wrap: wrap; gap: 6px; }
     .chip { background: var(--tag-bg); color: var(--fg); border-radius: 999px; padding: 4px 10px; font-size: 0.8rem; font-weight: 500; white-space: nowrap; }
     .chip.c-vuelos, .chip.c-ciudad, .chip.c-finca { background: var(--accent-bg); color: var(--accent); font-weight: 600; }
@@ -130,16 +139,34 @@
     </header>
     <p class="intro">Opciones en Airbnb y Booking para los dos tramos del viaje, ordenadas por precio dentro de cada tramo. Ninguna pide pago hoy. Precios en COP tal como aparecían el 18 de septiembre de 2026; pueden cambiar. Los botones abren el anuncio con las fechas del tramo y las 8 personas ya puestas.</p>
 
-    <section class="grand" aria-label="Total por persona">
-      <span class="total-label">Total por persona, vuelos y estadía</span>
-      <strong class="total-range">$1.069.795 a $1.563.140</strong>
-      <span class="total-sub">Vuelo ida y vuelta, 4 noches en la ciudad y 2 en finca, dividido entre 8.</span>
-      <div class="chips">
-        <span class="chip c-vuelos">Vuelo $366.425 a $394.390</span>
-        <span class="chip c-ciudad">Ciudad $353.370 a $818.750</span>
-        <span class="chip c-finca">Finca $350.000 a $350.000</span>
+    <section class="grand" aria-label="Calculadora por persona">
+      <span class="total-label">Arma tu combinación</span>
+      <div class="picker">
+        <label><span>Casa en la ciudad</span><select id="selCiudad"><option value="2826961">Apto Jaime · $353.370</option><option value="3953711">Posada ABBA · $494.214</option><option value="5482030">Magusan · $685.254</option><option value="6111968">Luxury 502 · $763.996</option><option value="6550000">Dúplex S4 · $818.750</option></select></label>
+        <label><span>Finca</span><select id="selFinca"><option value="2800000">Finca Angela · $350.000</option></select></label>
+        <label><span>Vuelo</span><select id="selVuelo"><option value="366425">Wingo · $366.425</option><option value="393790">JetSMART · $393.790</option><option value="394390">LATAM · $394.390</option></select></label>
       </div>
+      <div class="result">
+        <span class="total-label">Cada uno paga, vuelo y estadía</span>
+        <strong class="total-range" id="outTotal"></strong>
+        <span class="total-sub" id="outDetalle"></span>
+      </div>
+      <span class="total-sub">Rango con todas las opciones: $1.069.795 a $1.563.140 por persona. Precios aproximados, los reales se ven en cada anuncio.</span>
     </section>
+    <script>
+      (function () {
+        var P = 8;
+        var sc = document.getElementById("selCiudad"), sf = document.getElementById("selFinca"), sv = document.getElementById("selVuelo");
+        function cop(n) { return "$" + Math.round(n).toLocaleString("es-CO"); }
+        function calc() {
+          var c = +sc.value / P, f = +sf.value / P, v = +sv.value;
+          document.getElementById("outTotal").textContent = cop(c + f + v);
+          document.getElementById("outDetalle").textContent = "Ciudad " + cop(c) + " + finca " + cop(f) + " + vuelo " + cop(v) + ", dividido entre " + P + ".";
+        }
+        [sc, sf, sv].forEach(function (el) { el.addEventListener("change", calc); });
+        calc();
+      })();
+    </script>
 
     <details class="leg" id="vuelos">
       <summary>

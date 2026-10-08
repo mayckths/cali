@@ -228,6 +228,15 @@ CSS = """
     .total-label { display: block; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
     .total-range { display: block; font-size: clamp(1.4rem, 6vw, 1.9rem); letter-spacing: -0.02em; margin: 2px 0 4px; }
     .total-sub { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; }
+    .picker { display: grid; gap: 10px; margin: 10px 0 14px; }
+    .picker label { display: grid; gap: 4px; font-size: 0.8rem; color: var(--muted); }
+    .picker select { width: 100%; font: inherit; font-size: 0.95rem; color: var(--fg); background: var(--bg);
+      border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; -webkit-appearance: none; appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+      background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 34px; }
+    .result { background: var(--accent-bg); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+    .result .total-range { color: var(--accent); margin-bottom: 2px; }
+    .result .total-sub { margin-bottom: 0; }
     .chips { display: flex; flex-wrap: wrap; gap: 6px; }
     .chip { background: var(--tag-bg); color: var(--fg); border-radius: 999px; padding: 4px 10px; font-size: 0.8rem; font-weight: 500; white-space: nowrap; }
     .chip.c-vuelos, .chip.c-ciudad, .chip.c-finca { background: var(--accent-bg); color: var(--accent); font-weight: 600; }
@@ -318,23 +327,45 @@ CSS = """
 """
 
 def rango():
+    import json
     cp = [i["precio"] for i in CIUDAD["items"] if i["precio"]]
     fp = [i["precio"] for i in FINCA["items"] if i["precio"]]
     c_min, c_max = min(cp) / PERSONAS, max(cp) / PERSONAS
     f_min, f_max = min(fp) / PERSONAS, max(fp) / PERSONAS
     t_min = VUELO_MIN + c_min + f_min
     t_max = VUELO_MAX + c_max + f_max
+    opt_c = "".join(f'<option value="{i["precio"]}">{escape(i["corto"])} · {cop(i["precio"] / PERSONAS)}</option>' for i in CIUDAD["items"] if i["precio"])
+    opt_f = "".join(f'<option value="{i["precio"]}">{escape(i["corto"])} · {cop(i["precio"] / PERSONAS)}</option>' for i in FINCA["items"] if i["precio"])
+    opt_v = "".join(f'<option value="{v["precio"]}">{escape(v["aerolinea"])} · {cop(v["precio"])}</option>' for v in VUELOS["items"])
     return f'''
-    <section class="grand" aria-label="Total por persona">
-      <span class="total-label">Total por persona, vuelos y estadía</span>
-      <strong class="total-range">{cop(t_min)} a {cop(t_max)}</strong>
-      <span class="total-sub">Vuelo ida y vuelta, {CIUDAD["noches"]} noches en la ciudad y {FINCA["noches"]} en finca, dividido entre {PERSONAS}.</span>
-      <div class="chips">
-        <span class="chip c-vuelos">Vuelo {cop(VUELO_MIN)} a {cop(VUELO_MAX)}</span>
-        <span class="chip c-ciudad">Ciudad {cop(c_min)} a {cop(c_max)}</span>
-        <span class="chip c-finca">Finca {cop(f_min)} a {cop(f_max)}</span>
+    <section class="grand" aria-label="Calculadora por persona">
+      <span class="total-label">Arma tu combinación</span>
+      <div class="picker">
+        <label><span>Casa en la ciudad</span><select id="selCiudad">{opt_c}</select></label>
+        <label><span>Finca</span><select id="selFinca">{opt_f}</select></label>
+        <label><span>Vuelo</span><select id="selVuelo">{opt_v}</select></label>
       </div>
-    </section>'''
+      <div class="result">
+        <span class="total-label">Cada uno paga, vuelo y estadía</span>
+        <strong class="total-range" id="outTotal"></strong>
+        <span class="total-sub" id="outDetalle"></span>
+      </div>
+      <span class="total-sub">Rango con todas las opciones: {cop(t_min)} a {cop(t_max)} por persona. Precios aproximados, los reales se ven en cada anuncio.</span>
+    </section>
+    <script>
+      (function () {{
+        var P = {PERSONAS};
+        var sc = document.getElementById("selCiudad"), sf = document.getElementById("selFinca"), sv = document.getElementById("selVuelo");
+        function cop(n) {{ return "$" + Math.round(n).toLocaleString("es-CO"); }}
+        function calc() {{
+          var c = +sc.value / P, f = +sf.value / P, v = +sv.value;
+          document.getElementById("outTotal").textContent = cop(c + f + v);
+          document.getElementById("outDetalle").textContent = "Ciudad " + cop(c) + " + finca " + cop(f) + " + vuelo " + cop(v) + ", dividido entre " + P + ".";
+        }}
+        [sc, sf, sv].forEach(function (el) {{ el.addEventListener("change", calc); }});
+        calc();
+      }})();
+    </script>'''
 
 
 HTML = f'''<!DOCTYPE html>
